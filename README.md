@@ -1,7 +1,6 @@
 Welcome
 =======
 
-<<<<<<< HEAD
 Welcome to the GitHub home page for IBM i2 Intelligence Analysis Platform Data-Acquisition-Accelerators. This repository contains example code, documentation, and discussion about customizing the Intelligence Analysis Platform.
 
 -   [Read installation, deployment, and troubleshooting documentation](documentation/developer_essentials_welcome.md)
@@ -11,4 +10,3 @@ Welcome to the GitHub home page for IBM i2 Intelligence Analysis Platform Data-A
 
 =======
 Welcome to the GitHub home page for IBM i2 Intelligence Analysis Platform Data Acquisition Accelerators. This repository contains example code, documentation, and discussion about developing Data Acquisition solutions for Intelligence Analysis Platform deployments. You can use the samples that this repository contains as the starting points for your own projects.
->>>>>>> origin/master

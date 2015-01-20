@@ -1,2 +1,2 @@
-Welcome to Acxiom sample Data Acquisition  Accelerator
+Welcome to Domain Tools sample Data Acquisition  Accelerator
 ================================================

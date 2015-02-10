@@ -1,0 +1,232 @@
+<!-- 
+/*******************************************************************************
+ * Licensed Materials - Property of IBM
+ * (C) Copyright IBM Corp. 2015 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *******************************************************************************/
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.9.2/dojo/dojo.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/dojo/1.9.2/dojo/resources/dojo.css">
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/dojo/1.9.2/dijit/themes/tundra/tundra.css">
+    <style>
+        h1
+        {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .mainContent
+        {
+            background-color: #D8D8D8;
+            margin: 0 auto;
+            margin-top: 50px;
+            border: 1px solid black;
+            padding: 20px;
+            width: 330px;
+        }
+
+        .hideDescriptionText
+        {
+            display: none;
+        }
+
+        .example {
+        	font-family: monospace;
+        }
+    </style>
+    <script type="text/javascript">
+        require(["dojo/query", "dojo/json", "dojo/request/xhr", "dojo/on", "dojo/parser", "dijit/registry", 
+        "dojo/io-query", "dojox/widget/Standby", "dijit/Dialog", "dijit/form/Button", "dijit/form/TextBox", 
+        "dijit/form/ValidationTextBox", "dijit/form/Select", "dijit/form/Form", "dojo/domReady!"],
+        function (query, JSON, xhr, on, parser, registry, ioQuery, Standby) {
+
+            parser.parse();
+
+            var vqButton = registry.byId("launchVQButton");
+            var browseButton = registry.byId("launchBrowseButton");
+            var searchButton = registry.byId("executeSearchButton");
+
+            var searchTermTextBox = registry.byId("searchTerm");
+            var requestTypeComboBox = registry.byId("requestType");
+
+            var selectViewDialog = registry.byId("selectViewDialog");
+            
+		    var searchForm = registry.byId("searchForm");
+            
+            var descriptions = dojo.byId("descriptions");
+            
+            var spinner = new Standby({target: "searchForm"});
+		    document.body.appendChild(spinner.domNode);
+		    spinner.startup();
+
+            function hideDialog() {
+                selectViewDialog.hide();
+            }
+            
+            on(requestTypeComboBox, "change", function (evt) {
+	           	//hide all the decriptions divs
+	           	query("div", descriptions).addClass("hideDescriptionText");
+            	//show our specific text that was selected
+            	query("div#" + requestTypeComboBox.value, descriptions).removeClass("hideDescriptionText");
+            	var placeholder = query("div#" + requestTypeComboBox.value + " span.example", descriptions)[0].innerHTML;
+            	searchTermTextBox.set("placeHolder", placeholder);
+            });
+            
+            var searchQuery = window.location.search.substring(1);
+  			var queryObject = ioQuery.queryToObject(searchQuery);
+  			searchTermTextBox.set("value", queryObject.query);
+  			requestTypeComboBox.set("value", queryObject.type);
+
+            on(browseButton, "click", function (evt) {
+                launchIntentAndHideDialog("Browse");
+            });
+
+            on(vqButton, "click", function (evt) {
+                launchIntentAndHideDialog("VisualQuery");
+            });
+
+            on(searchForm, "submit", function (evt) {
+            	evt.stopPropagation();
+            	evt.preventDefault();
+                executeSearch();
+                return true;
+            });
+            
+            function launchIntentAndHideDialog(portalIntentToLaunch) {
+	            launchPortalIntent(portalIntentToLaunch);
+	            hideDialog();
+            }
+
+            function launchPortalIntent(portalIntentToLaunch) {
+
+                var jsonIntent = {
+                    portalIntentToLaunch: portalIntentToLaunch,
+
+                    dataSourceId: subsetResponse.DataSourceId,
+                    token: subsetResponse.SubsetIdentifier.SubsetToken,
+                    subsetName: searchTermTextBox.value
+                };
+
+                postMessageToParent(JSON.stringify(jsonIntent));
+            }
+
+            var subsetResponse;
+
+            function executeSearch() {
+				spinner.show();
+				
+                var searchData = { 
+                	RequestType: requestTypeComboBox.value,
+                	SearchString: searchTermTextBox.value 
+                };
+               
+               	var params = dojo.queryToObject(window.location.search);
+				var locale = params['?locale'];
+				if (!locale){
+					locale = "en-US";
+				}
+                // Call the asynchronous xhrGet
+                xhr("rest/daodSubsets", {
+                    handleAs: "json",
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" , "Locale": locale },
+                    data: JSON.stringify(searchData)
+                })
+                	.then(
+                		function (data) {
+                		    subsetResponse = data;
+                		    selectViewDialog.show();
+                		},
+                		function (err) {
+                			if (err.response.status == 400) {
+                				alert("Your request was not understood by the DomainTools service - please check your query to ensure it is valid for the selected tool."
+                				      + "'Error Recieved: " + err.response.status + ": " + err.response.text + "'.")
+							} else if (err.response.status == 403) {
+                				alert("Your request was rejected by DomainTools - you are not authorised, check your API username and key, and that you have access to the correct APIs for this service."
+                				      + "'Error Recieved: " + err.response.status + ": " + err.response.text + "'.")
+                			} else {
+                		    	alert("There was an error while making your request: 'Error " + err.response.status + ": " + err.response.text + "'.");
+                		    }
+                		})
+                	.always(
+                		function() {
+                		    spinner.hide(); 
+                		});
+            }
+
+            function postMessageToParent(someIntentString) {
+                // If we are in an iframe
+                if (parent !== window) {
+
+                    // Note: Post message not supported in <IE8 http://caniuse.com/x-doc-messaging
+                    // Note: This cannot auto adapt or try to figure out the domain from where the parent iframe is hosted or via a query string for example,
+                    // as this will introduce a security hole. You must specify exactly where you are sending the message.
+                    // TODO Take out asterisk and finalize where it will be hosted by default once deployed
+                    var messageTargetOrigin = "*";
+                    parent.postMessage(someIntentString, messageTargetOrigin);
+                }
+            }
+        });
+
+    </script>
+</head>
+<body class="tundra">
+    <div class="mainContent">
+	    <div id="searchForm" data-dojo-type="dijit/form/Form">
+	        <select id="requestType" data-dojo-type="dijit/form/Select">
+				<option value="host-domains">Related domains by IP address.</option>
+				<option value="reverse-ip">Related domains by shared hosting.</option>
+				<option value="reverse-whois">Related domains by Whois records.</option>
+				<option value="whois">Whois record lookup.</option>
+				<option value="whois-history">Whois record history lookup.</option>
+			</select>
+	    	
+	    	<div id="descriptions">
+	    		<div id="host-domains">
+			        <h1>Find domain names that are served by the given IP address.</h1>
+			        <p>Query should be an IP Address, e.g: <span class="example">192.0.2.1</span>.</p>
+		        </div>
+		    	<div id="reverse-ip" class="hideDescriptionText">
+			        <h1>Find domain names that share the same web host as the given domain name.</h1>
+			        <p>Query should be a domain name, e.g: <span class="example">example.com</span>.</p>
+		        </div>
+		        <div id="reverse-whois" class="hideDescriptionText">
+			        <h1>Find domain names by searching for terms to find in whois records.</h1>
+			        <p>Query should a pipe (|) separated list of terms, e.g: <span class="example">example@example.com</span> 
+			        or <span class="example">examplename|examplelocation.</span></p>
+		        </div>
+		        <div id="whois" class="hideDescriptionText">
+			        <h1>Retrieve the Whois record for the given domain.</h1>
+			        <p>Query should be a domain name, e.g: <span class="example">example.com</span>.</p>
+		        </div>
+		        <div id="whois-history" class="hideDescriptionText">
+			        <h1>Retrieve the Whois record history for the given domain.</h1>
+			        <p>Query should be a domain name, e.g: <span class="example">example.com</span>.</p>
+		        </div>
+	        </div>
+	       
+	        <input type="text" id="searchTerm" data-dojo-type="dijit/form/TextBox" data-dojo-props="placeHolder: '192.0.2.1', intermediateChanges: true" />
+	        <button id="executeSearchButton" data-dojo-type="dijit/form/Button" data-dojo-props="label: 'Submit'"
+	            type="submit">
+	        </button>
+        </div>
+        
+        <div>
+            <div data-dojo-type="dijit/Dialog" id="selectViewDialog" title="Select View:">
+            	<p>Would you like to browse the results, or perform a visual query over them?</p>
+            	<button id="launchBrowseButton" data-dojo-type="dijit/form/Button" data-dojo-props="label: 'Browse'"
+                    type="button">
+                </button>
+                <button id="launchVQButton" data-dojo-type="dijit/form/Button" data-dojo-props="label: 'Visual Query'"
+                    type="button">
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

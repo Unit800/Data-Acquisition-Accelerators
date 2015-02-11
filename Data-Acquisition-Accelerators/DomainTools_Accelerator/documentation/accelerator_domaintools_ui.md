@@ -51,7 +51,7 @@ To add the DomainTools Accelerator user interface extension to the Intelligence 
     IAP-Deployment-Toolkit\SDK\sdk-projects\domaintools UI\extractedxap
     ```
 
-3.  In Visual Studio, open the solution file at IAP-Deployment-Toolkit\\SDK\\sdk-projects\\domaintools UI\\domaintools\_visual\_studio\\DomainTools.sln. The Visual Studio solution contains the `DomainTools` project that provides the user interface extension.
+3.  In Visual Studio, open the solution file at IAP-Deployment-Toolkit\\SDK\\sdk-projects\\domaintools UI\\domaintools\-visual\-studio\-project\\DomainTools.sln. The Visual Studio solution contains the `DomainTools` project that provides the user interface extension.
 4.  Build the solution in debug mode. Visual Studio puts the DLL files that it generates in the directory
 
     ``` {.pre .codeblock}

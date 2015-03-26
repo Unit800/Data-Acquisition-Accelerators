@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Licensed Materials - Property of IBM
+(C) Copyright IBM Corp. 2015 All Rights Reserved
+US Government Users Restricted Rights - Use, duplication or
+disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<AcxionSearch>
+  <SearchTerm>
+	<QueryType>First, Last, City, State, Zip</QueryType>
+    <PropertyList>First Name,Last Name,City,State,ZipCode</PropertyList>
+  </SearchTerm>
+  <SearchTerm>
+    <QueryType>First, Last, Zip</QueryType>
+    <PropertyList>First Name, Last Name, Zip</PropertyList>
+  </SearchTerm>
+  <SearchTerm>
+    <QueryType>First, Last, Address1, City, State</QueryType>
+    <PropertyList>First Name, Last Name, Address 1, City, State</PropertyList>
+  </SearchTerm>
+  <SearchTerm>
+    <QueryType>First, Last, Address, Zip</QueryType>
+    <PropertyList>First Name, Last Name, Address Line 1, Zip</PropertyList>
+  </SearchTerm>
+  <SearchTerm>
+    <QueryType>Full SSN, Last, First</QueryType>
+    <PropertyList>Full SSN #, Last Name, First Name</PropertyList>
+  </SearchTerm>
+  <SearchTerm>
+    <QueryType>First 5 digits SSN, First, Last</QueryType>
+    <PropertyList>First 5#, First Name, Last Name</PropertyList>
+  </SearchTerm>
+  <DppaSearchFilter>
+    <SearchFilter>DPPA</SearchFilter>
+    <!-- first selection in list is the default value, which is set to None -->
+    <SelectionList>None, Fraud Prevention, Insurance, Government Agency, Government Contractor</SelectionList>
+  </DppaSearchFilter>
+  <GlbaSearchFilter>
+    <SearchFilter>GLBA</SearchFilter>
+    <!-- first selection in list is the default value, which is set to None -->
+    <SelectionList>None, Fraud Prevention, Beneficial Interest, Enforce Transaction by Consumer, Institutional Risk, Consumer Dispute, Federal State Local Laws, Law Enforcement State Insurance Agency</SelectionList>
+  </GlbaSearchFilter>
+</AcxionSearch>

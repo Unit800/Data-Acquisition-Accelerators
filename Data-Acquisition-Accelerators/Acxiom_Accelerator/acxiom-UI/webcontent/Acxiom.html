@@ -1,0 +1,220 @@
+<!-- 
+/*******************************************************************************
+ * Licensed Materials - Property of IBM
+ * (C) Copyright IBM Corp. 2015 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *******************************************************************************/
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=9">
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <title>Acxiom Property Search</title>
+        <link href="http://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dijit/themes/dijit.css" rel="stylesheet">
+        <link href="http://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dijit/themes/claro/claro.css" rel="stylesheet">
+        <style>
+            html, body {
+                font-family: "Segoe UI", Arial, sans-serif;
+            }
+            .propertyList table { 
+                border-spacing: 3px;
+            }
+            tr:nth-child(2n+3), tr:nth-child(2n+3) > td {
+                background-color: #d8d8d8; 
+            }
+            tr:nth-child(2n), tr:nth-child(2n) > td {
+                background-color: #b8b8b8;
+            }         
+            .propertyListRow td.indent {
+                padding-left: 10px;
+                min-width: 250px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+            .main_fieldset {
+                text-align: left;
+            }
+            .main_content {
+                background-color: #FFF;
+                width: 50%;
+                margin: 0px auto 9px;
+                display: block;
+                padding: 0px;
+            }
+            .propertyList {
+                text-align: left;               
+            }
+            .propertyList .whiteBackground {
+                background-color: white; 
+            }
+            .propertyList .searchTermFilter {
+                padding-top: 20px; 
+                padding-left: 10px; 
+            }
+            .propertyList .searchTermtext {
+                padding-bottom: 3px; 
+                padding-left: 50px; 
+                background-color: white; 
+            }
+            .propertyList .dppaSearchType 
+            {
+                padding-bottom: 10px;
+                background: white;
+            }
+            .propertyList .glbaSearchType 
+            {
+                padding-bottom: 10px;
+                background: white;
+            }
+            .propertyList .searchTermTitle 
+            {
+               opacity: 0;          
+            }
+            .submitPropBtn {
+                float: right;
+                padding-right: 75px; 
+                padding-left: 50px;       
+            }
+            .propertyListRow .input.dijitSelect,
+            .propertyListRow .dijitTextBox,
+            .propertyListRow .dijitTextBox .dijitButtonNode {
+                background-color : white;
+                border-color: #d8d8d8;
+                min-width: 300px; 
+                padding-left: 3px;
+            }
+            .required {
+                color: red;
+                font-weight: 700;
+                border: 0;
+                padding-left: 2px;               
+            }
+            .breakBar_top {
+                background: lightslategrey;
+                padding-top: 5px;
+                margin: 20px 0px;
+            }
+            .bottom_space {
+                padding-bottom: 20px;
+            }
+			.propertyListWidg {
+				clear: both;
+			}
+                                        
+            
+        </style>
+    </head>
+    <body class="claro">
+        <div class="main_content">
+ 	        <div style="margin:0 auto" align="center">
+                <fieldset class="main_fieldset">
+                    <legend>Acxiom Properties</legend>
+                     <div>
+                        <button id="btnSubmit" data-dojo-type="dijit/form/Button" class="submitPropBtn" >
+                            Search
+                        </button>
+                    </div>
+                    <div id="PropertyListWidget" data-dojo-type="acxiom/PropertyList" class="propertyListWidg"></div>
+                </fieldset>
+                </p>
+            </div>
+        <script>
+        var dojoConfig = (function(){
+            var base = location.href.split("/");
+            base.pop();
+            base = base.join("/");
+            return {
+                // Stop FF complaining
+                locale: (navigator.language || navigator.userLanguage || "en-us").toLowerCase(),
+                async: true,
+                isDebug: true,
+                packages: [{
+                    name: "acxiom",
+                    location: base + "/acxiom"
+                }]
+            };
+        })();
+        </script>
+    
+        <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script>
+    
+        <script>
+        var mSilverlightInterface = null;
+        var domReadyForSilverlightAccess = false;
+        function isDomReady() { //called by Silverlight to check for Dom readyiness
+            return domReadyForSilverlightAccess;
+        }
+
+        function domReady() {
+
+            //Dom is Ready, start to display Acxiom UI 
+            domReadyForSilverlightAccess = true;
+        }
+
+        function setSilverlightInterface(silverlightInterface) {
+            //called by Silverlight to setup the interfaces to be referenced later
+            mSilverlightInterface = silverlightInterface;
+        }
+
+        function getSilverlightInterface() {
+            return mSilverlightInterface;
+        }
+
+        function logToConsole(message) { //log message to console
+            if (window.console && window.console.log) {
+                window.console.log(message);
+            }
+        }
+
+        require(["dojo/parser", "dijit/registry", "dojo/has",
+        "dijit/form/Button", "acxiom/PropertyList"],
+        function(parser, registry, has ) {
+            
+            if (has("ie") < 9) {
+                alert("The accelerator is not supported for versions of Microsoft Internet Explorer earlier than version 9.");
+            }
+                        
+            parser.parse().then(function() {
+                //dom is ready as well as the widgets
+                domReady();
+                
+                var btnSubmit = registry.byId("btnSubmit");
+                var proplist = registry.byId("PropertyListWidget");
+
+                btnSubmit.on("click", function() {
+                    submitProperties();                  
+                });
+                btnSubmit.set("disabled", true); //for now, disable submit button
+
+                function enableDisableSubmitButton(name, oldValue, newValue){
+                     btnSubmit.set("disabled", !newValue); //enable or disable button
+                }   
+                // watch for readyness of the properties to be submitted
+                proplist.watch("readynessForSubmit", enableDisableSubmitButton);   
+                          
+                function submitProperties()
+                {
+
+                    var finalProps = "";
+
+                    finalProps += "dppa" + ":=" +  proplist.dppaPropertyType.get("displayedValue") + ";";
+                    finalProps += "glba" + ":=" +  proplist.glbaPropertyType.get("displayedValue") + ";";
+                                        
+                    proplist.childRows.forEach(function(propRow) {
+                        finalProps += propRow.get("propertyTypeName").replace(/^\s+|\s+$/gm,'') + ":=";//remove leading and trailing blanks;
+                        finalProps += propRow.get("propertyValue") + ";";
+                    });
+
+                    finalProps = finalProps.slice(0, - 1); //remove the last character ';' not needed
+                    //launch DAOD interface and search using the properties                
+                    getSilverlightInterface().LaunchDataIntent(/*browse*/ "0", finalProps, /*Acxiom subset name */ "Acxiom results" );
+                    
+                }
+            });
+        });        
+        </script>
+        </div>
+    </body>
+</html>

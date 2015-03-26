@@ -1,0 +1,19 @@
+<i2mvvm:ViewBase x:Class="Acxiom.AcxiomTabView" 
+           xmlns:i2mvvm="http://www.i2group.com/i2/SilverlightMVVM" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:SilverlightCommon="clr-namespace:i2.Apollo.SilverlightCommon;assembly=i2.Apollo.SilverlightCommon"
+           mc:Ignorable="d"        
+           d:DesignWidth="640" d:DesignHeight="480">
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - Licensed Materials - Property of IBM
+ - (C) Copyright IBM Corp. 2015 All Rights Reserved
+ - US Government Users Restricted Rights - Use, duplication or
+ - disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <Grid x:Name="LayoutRoot">
+        <SilverlightCommon:HtmlControl x:Name="HtmlHost" HtmlSource="{Binding PageLocation}" ForwardLocaleInfo="True" />
+    </Grid>
+</i2mvvm:ViewBase>

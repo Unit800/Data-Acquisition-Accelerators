@@ -1,0 +1,59 @@
+<div class="propertyList">
+<!-- 
+/*******************************************************************************
+ * Licensed Materials - Property of IBM
+ * (C) Copyright IBM Corp. 2015 All Rights Reserved
+ * US Government Users Restricted Rights - Use, duplication or
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *******************************************************************************/
+-->
+	Acxiom Search Terms
+ 
+	<table>
+		<tbody data-dojo-attach-point="contentsNode">
+ 			
+            <tr>
+				<td>
+                    <span>DPPA filter types</span>
+                </td>
+				<td>
+                    <span>GLBA filter types</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="dppaSearchType">
+					<select tabindex="3" data-dojo-attach-point="dppaPropertyType"
+						data-dojo-type="dijit/form/FilteringSelect" title="Select DPPA filter type"
+ 						data-dojo-props="placeHolder: 'Choose a DPPA search type', required: false">
+					</select>
+				</td>
+                <td class="glbaSearchType">
+					<select tabindex="4" data-dojo-attach-point="glbaPropertyType"
+						data-dojo-type="dijit/form/FilteringSelect" title="Select GLBA filter type"
+ 						data-dojo-props="placeHolder: 'Choose a GLBA search type', required: false">
+					</select>
+				</td>
+			</tr>
+
+ 			<tr>
+				<td class="whiteBackground">
+					<select tabindex="5" data-dojo-attach-point="lstPropertyType"
+						data-dojo-type="dijit/form/FilteringSelect" title="Select a search term filter"
+						data-dojo-props="placeHolder: 'Choose a search term filter', required: false">
+					</select>
+				</td>
+				<td class="whiteBackground">
+					<button tabindex="6" data-dojo-type="dijit/form/Button" data-dojo-attach-point="btnInsert"
+                    data-dojo-attach-event="click: displayQueryRows"
+					data-dojo-props="iconClass: 'dijitIconNewTask'">Show Query fields</button>
+				</td>
+			</tr>
+            <tr>
+                <td colspan="2" class="searchTermtext" >
+                    <span class="searchTermTitle" data-dojo-attach-point="searchTermPropTitle">Search Terms properties of:&nbsp;<b><span data-dojo-attach-point="qryViewSelected" /></b></span>
+                </td>
+            </tr>
+		</tbody>
+	</table>
+	<button data-dojo-type="dijit/form/Button" data-dojo-attach-event="click: clearRows">Clear List</button>
+</div>

@@ -1,0 +1,1773 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ns2:Schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns3="http://www.i2group.com/Schemas/2011-03-03/ModelSchemaExtension" DefaultLabelingSchemeId="LSc01" xmlns:ns2="http://www.i2group.com/Schemas/2011-03-03/ModelSchema">
+  <GradeTypes>
+    <GradeType Description="Source Evaluation" Mandatory="false" Id="G1" Name="Reliability">
+      <Values>
+        <Value>A</Value>
+        <Value>B</Value>
+        <Value>C</Value>
+        <Value>D</Value>
+        <Value>E</Value>
+      </Values>
+    </GradeType>
+    <GradeType Description="Information Intelligence Evaluation" Mandatory="false" Id="G2" Name="Confidence">
+      <Values>
+        <Value>1</Value>
+        <Value>2</Value>
+        <Value>3</Value>
+        <Value>4</Value>
+        <Value>5</Value>
+      </Values>
+    </GradeType>
+    <GradeType Description="Handling Code" Mandatory="false" Id="G3" Name="Privacy">
+      <Values>
+        <Value>1</Value>
+        <Value>2</Value>
+        <Value>3</Value>
+        <Value>4</Value>
+        <Value>5</Value>
+      </Values>
+    </GradeType>
+  </GradeTypes>
+  <ItemTypes>
+    <EntityTypes>
+      <EntityType Id="372a12af-f684-41c5-9ce9-759b3beef826" Description="Set" DisplayName="Set" Icon="General group">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="true" MaximumLengthChars="255" SemanticTypeId="" DisplayName="Name" Description="Name" LogicalType="SINGLE_LINE_STRING" Id="07e81445-0f5e-4340-b355-c82809e895da">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+      <EntityType Id="642330a9-1eca-43d0-9f45-a3ca2fd8a1bb" Description="User" DisplayName="User" Icon="Profmale">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Name" Description="Name" LogicalType="SINGLE_LINE_STRING" Id="ce3d12ac-2632-4a0f-b2b6-6a7fdda887a6">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" SemanticTypeId="" DisplayName="Picture" Description="Picture" LogicalType="PICTURE" Id="becf8151-c6ac-4b9e-bff5-bb56e02fb2ed">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="false" SemanticTypeId="" DisplayName="Available" Description="Availability" LogicalType="BOOLEAN" Id="e31bc44e-39f2-4221-a237-a69766d4685e">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+      <EntityType Id="cf17d636-44c9-4897-b19d-7d2eda002e57" Description="Analyst's Notebook chart" DisplayName="Analyst's Notebook Chart" Icon="Anbchart">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="true" MaximumLengthChars="255" SemanticTypeId="" DisplayName="Name" Description="The file name of the chart" LogicalType="SINGLE_LINE_STRING" Id="d6d03ce2-3cd6-49c1-8a66-366d0e434fd4">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" SemanticTypeId="" DisplayName="Chart Binary Data" Description="The binary file that stores the contents of the chart" LogicalType="DOCUMENT" Id="a20fef80-5c5f-4cf6-a597-c869193792e7">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="false" SemanticTypeId="" DisplayName="Chart Preview Image" Description="A thumbnail image of the chart" LogicalType="PICTURE" Id="8690b4d1-421d-4df1-8a9b-b1d25a1676e3">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="3" Mandatory="false" SemanticTypeId="" DisplayName="Chart Index Data" Description="Data used to index the chart" LogicalType="DOCUMENT" Id="c84133b6-7c02-466f-ba14-c1bf28787f2c">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+      <EntityType Id="1274e2e7-7751-4dae-a994-648718e19f04" Description="Alert Feed" DisplayName="Alert Feed" Icon="Search">
+        <PropertyGroupTypes>
+          <PropertyGroupType Mandatory="true" Position="3" Description="Events that will trigger alerts from this feed" DisplayName="Alert Trigger Events" Id="566eaa37-01d2-4628-9231-a0448ef4a44c">
+            <PropertyTypes>
+              <PropertyType Position="0" Mandatory="false" SemanticTypeId="" DisplayName="Item has been changed" Description="Alert on changes to this item" LogicalType="BOOLEAN" Id="03487793-7975-4332-903b-e670a66c9451">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="1" Mandatory="false" SemanticTypeId="" DisplayName="Item has been deleted" Description="Alert on deletion of this item" LogicalType="BOOLEAN" Id="f8471cf2-0b19-4bd2-9187-d3ac6f474026">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="2" Mandatory="false" SemanticTypeId="" DisplayName="Link has been made to item" Description="Alert on links made to this item" LogicalType="BOOLEAN" Id="0b99c403-49f7-4757-9876-3606ec5befa0">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="3" Mandatory="false" SemanticTypeId="" DisplayName="Content added to this set" Description="Alert on additions to this set" LogicalType="BOOLEAN" Id="afa7f3fb-23b0-4869-8b7d-0306ef158b5b">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="8" Mandatory="false" SemanticTypeId="" DisplayName="Version change for existing set content" Description="Alert on changes to the version of an item within this set" LogicalType="BOOLEAN" Id="051e91c1-e925-4dd4-97f1-75ffe37f9c48">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="4" Mandatory="false" SemanticTypeId="" DisplayName="Content removed from this set" Description="Alert on removal from this set" LogicalType="BOOLEAN" Id="8146df80-3a08-4106-900f-214faf9ec571">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="5" Mandatory="false" SemanticTypeId="" DisplayName="Item in this set has been changed" Description="Alert on changes to any item contained by this set" LogicalType="BOOLEAN" Id="db8c60d1-1ff9-4896-bbd0-5e33351815e2">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="6" Mandatory="false" SemanticTypeId="" DisplayName="Item in this set has been deleted" Description="Alert on deletion of any item contained by this set" LogicalType="BOOLEAN" Id="514b213e-b677-428a-a5c9-b8690d564032">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="7" Mandatory="false" SemanticTypeId="" DisplayName="Item in this set has been linked to" Description="Alert on links made to any item contained by this set" LogicalType="BOOLEAN" Id="2d9ed2a2-5f33-432b-b99b-f08349f8366d">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="9" Mandatory="false" SemanticTypeId="" DisplayName="Item primary properties have changed" Description="Alert on changes to the primary properties of this item" LogicalType="BOOLEAN" Id="4b873852-76e4-48e1-884a-9f95b87210f9">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="10" Mandatory="false" SemanticTypeId="" DisplayName="Item in this set has had primary properties changed" Description="Alert on changes to the primary properties of an item in this set" LogicalType="BOOLEAN" Id="e2127bbb-9ad8-417d-840f-74ec9849ec5e">
+                <PossibleValues />
+              </PropertyType>
+            </PropertyTypes>
+          </PropertyGroupType>
+        </PropertyGroupTypes>
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="true" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Name" Description="The name of this alert feed" LogicalType="SINGLE_LINE_STRING" Id="b7b059a0-1079-45ac-8ae0-ee026f70dd69">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" SemanticTypeId="" DisplayName="Description" Description="Descriptive text to be included in any generated alerts" LogicalType="MULTIPLE_LINE_STRING" Id="d1949ec2-9a77-461e-a16f-81026ccd1e89">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="true" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Alert Reference ID" Description="Unique ID of the item being monitored for alerts" LogicalType="SINGLE_LINE_STRING" Id="814a72ed-5c68-4763-8d47-b4866de2344b">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+      <EntityType Id="Par01" SemanticTypeId="guid8863CA12-D42B-4b07-8E96-5509EF979920" Description="Party" DisplayName="Party" Icon="Generic Entity vlv">
+        <PropertyGroupTypes>
+          <PropertyGroupType Mandatory="false" Position="12" Description="Property" DisplayName="Property" Id="Pro08">
+            <PropertyTypes>
+              <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Type" Description="Property Type" LogicalType="SINGLE_LINE_STRING" Id="PTy08">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Value" Description="Property Value" LogicalType="SINGLE_LINE_STRING" Id="PVa08">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="2" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Form" Description="Property Form" LogicalType="SINGLE_LINE_STRING" Id="PFo08">
+                <PossibleValues />
+              </PropertyType>
+            </PropertyTypes>
+          </PropertyGroupType>
+        </PropertyGroupTypes>
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="Id" Description="Identifier" LogicalType="SINGLE_LINE_STRING" Id="IdP01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="RegisteredNumber" Description="Registered Number of the Party" LogicalType="SINGLE_LINE_STRING" Id="PRN01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid537C05E5-A426-4d70-B6EA-640AB6961865" DisplayName="Annotation" Description="Annotation" LogicalType="SINGLE_LINE_STRING" Id="PAn01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="3" Mandatory="false" SemanticTypeId="" DisplayName="Timestamp" Description="Timestamp" LogicalType="DATE_AND_TIME" Id="PTs01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="4" Mandatory="false" SemanticTypeId="" DisplayName="ReviewedDate" Description="Reviewed Date" LogicalType="DATE" Id="PRD01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="5" Mandatory="false" SemanticTypeId="" DisplayName="NextReviewDate" Description="Next Review Date" LogicalType="DATE" Id="NRD01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="6" Mandatory="false" SemanticTypeId="" DisplayName="FinancialStmtsRecvd" Description="No of Financial Statements Received" LogicalType="INTEGER" Id="FSR01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="7" Mandatory="false" SemanticTypeId="" DisplayName="PriorDeclinesCount" Description="Prior Declines Count" LogicalType="INTEGER" Id="PDC01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="8" Mandatory="false" SemanticTypeId="" DisplayName="PriorSARCount" Description="Prior SAR Count" LogicalType="INTEGER" Id="PSC01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="9" Mandatory="false" SemanticTypeId="" DisplayName="PriorTxnAlertCount" Description="Prior Transaction Alert Count" LogicalType="INTEGER" Id="PTA01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="10" Mandatory="false" SemanticTypeId="" DisplayName="BankReferenceRecvd" Description="Bank Reference Received" LogicalType="INTEGER" Id="BRR01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="11" Mandatory="false" SemanticTypeId="" DisplayName="LawEnforcementAlertCount" Description="Law Enforcement Alert Count" LogicalType="INTEGER" Id="LEA01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="13" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="SystemId" Description="System Id" LogicalType="SINGLE_LINE_STRING" Id="SId11">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+      <EntityType Id="Nam01" Description="Name" DisplayName="Name" Icon="Id">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Type" Description="Type of Name" LogicalType="SINGLE_LINE_STRING" Id="NTy01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="Id" Description="Identifier" LogicalType="SINGLE_LINE_STRING" Id="IdN01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Text" Description="Text of the Name" LogicalType="SINGLE_LINE_STRING" Id="NTe01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="3" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid537C05E5-A426-4d70-B6EA-640AB6961865" DisplayName="Annotation" Description="Annotation" LogicalType="SINGLE_LINE_STRING" Id="NAn01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="4" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="SystemId" Description="System Id" LogicalType="SINGLE_LINE_STRING" Id="SId12">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+      <EntityType Id="Ind01" SemanticTypeId="guid8A586959-9837-47DE-8DBF-BC7031F01545" Description="Individual" DisplayName="Individual" Icon="Person (Shaded Shirt)">
+        <PropertyGroupTypes>
+          <PropertyGroupType Mandatory="false" Position="10" Description="Nationalities of the Individual" DisplayName="Nationalities" Id="INa01">
+            <PropertyTypes>
+              <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid69F2B55D-EBF2-4950-9688-CB5273236A01" DisplayName="Nationality" Description="Nationality of the Individual" LogicalType="SINGLE_LINE_STRING" Id="INa02">
+                <PossibleValues />
+              </PropertyType>
+            </PropertyTypes>
+          </PropertyGroupType>
+          <PropertyGroupType Mandatory="false" Position="11" Description="Citizenships of the Individual" DisplayName="Citizenships" Id="ICi01">
+            <PropertyTypes>
+              <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Citizenship" Description="Citizenship of the Individual" LogicalType="SINGLE_LINE_STRING" Id="ICi02">
+                <PossibleValues />
+              </PropertyType>
+            </PropertyTypes>
+          </PropertyGroupType>
+        </PropertyGroupTypes>
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid7548369B-BA9A-4C4B-AEAD-0CB442EAFA27" DisplayName="Gender" Description="Gender of the Individual" LogicalType="SINGLE_LINE_STRING" Id="IGe01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" SemanticTypeId="" DisplayName="IsPoliticallyExposed" Description="Is the individual Politically Exposed ?" LogicalType="BOOLEAN" Id="IPE01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="false" SemanticTypeId="" DisplayName="PepFamilyMember" Description="Is member of PEP Family ?" LogicalType="BOOLEAN" Id="IPF01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="3" Mandatory="false" SemanticTypeId="guidFE45F1C4-B198-4111-8123-F42D2CD6419D" DisplayName="BirthDate" Description="Date of Birth of the individual" LogicalType="DATE" Id="IBD01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="4" Mandatory="false" SemanticTypeId="guid63702CA1-9334-4E99-B373-53D8FDE998B6" DisplayName="DeathDate" Description="Date of Death of the individual" LogicalType="DATE" Id="IDD01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="5" Mandatory="false" SemanticTypeId="" DisplayName="IsSmoker" Description="Is the individual Smoker ?" LogicalType="BOOLEAN" Id="IIS01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="6" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid2C98B11E-D3A0-463b-922C-D25E8E47666A" DisplayName="MaritalStatus" Description="Marital Status of the individual" LogicalType="SINGLE_LINE_STRING" Id="IMS01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="7" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guidCE86909A-D087-445f-A73D-C79FA9AC9F8C" DisplayName="Occupation" Description="Occupation of the individual" LogicalType="SINGLE_LINE_STRING" Id="IOc01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="8" Mandatory="false" SemanticTypeId="" DisplayName="Employer" Description="Employer of the individual" LogicalType="INTEGER" Id="IEm01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="9" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Employment Status" Description="Employment Status of the individual" LogicalType="SINGLE_LINE_STRING" Id="IES01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="12" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guidbfd2860d-c671-438c-a724-68031350bf69" DisplayName="Birthplace" Description="Place of Birth of the Individual" LogicalType="SINGLE_LINE_STRING" Id="IBP01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+      <EntityType Id="Ide01" SemanticTypeId="guid07EE442A-2FF9-4da3-8B97-3530C2A59E43" Description="Identity" DisplayName="Identification" Icon="Fngrprnt">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="Id" Description="Identifier" LogicalType="SINGLE_LINE_STRING" Id="IdI01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Name" Description="Name in the Identity Card" LogicalType="SINGLE_LINE_STRING" Id="INm01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description in the Identity Card" LogicalType="SINGLE_LINE_STRING" Id="IDs01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="3" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Image" Description="Image in the Identity Card" LogicalType="SINGLE_LINE_STRING" Id="IIm01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="4" Mandatory="false" SemanticTypeId="guidB8767EA5-841F-4734-B703-BC58786296A3" DisplayName="IssueDate" Description="Issue Date in the Identity Card" LogicalType="DATE" Id="IID01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="5" Mandatory="false" SemanticTypeId="guid5C9AD4B9-1135-4c5a-ABAC-8170C2A14B55" DisplayName="ExpiryDate" Description="Expiry Date of the Identity Card" LogicalType="DATE" Id="IED01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="6" Mandatory="false" SemanticTypeId="" DisplayName="Timestamp" Description="Timestamp" LogicalType="DATE_AND_TIME" Id="ITs01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="7" Mandatory="false" SemanticTypeId="" DisplayName="IssuingOrganization" Description="Issuing Organization of the Identity Card" LogicalType="INTEGER" Id="IIO01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="8" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guidc329f90d-3bf7-40c3-8d87-f6fe3cb8d5d4" DisplayName="Type" Description="Type of the Identity Card" LogicalType="SINGLE_LINE_STRING" Id="ITy01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="9" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="SystemId" Description="System Id" LogicalType="SINGLE_LINE_STRING" Id="SId13">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+      <EntityType Id="SAd01" SemanticTypeId="guidC6A2C76F-5637-43DC-92F8-8F3563226307" Description="Address" DisplayName="StreetAddress" Icon="House">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid4FB853E2-3867-4CCB-BC97-8B8381053FCE" DisplayName="Type" Description="Address Type" LogicalType="SINGLE_LINE_STRING" Id="STy01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="Id" Description="Identifier" LogicalType="SINGLE_LINE_STRING" Id="IdS01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guidDECE0D4F-CD3C-43d7-8F52-A068EA5BF494" DisplayName="Number" Description="Building Number on the street" LogicalType="SINGLE_LINE_STRING" Id="SNo01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="3" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="CareOf" Description="CareOf" LogicalType="SINGLE_LINE_STRING" Id="SCO01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="4" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guidF56E1A86-9C0E-4248-96C0-D77D4D16704E" DisplayName="Line1" Description="Address Line1" LogicalType="SINGLE_LINE_STRING" Id="SAL01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="5" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guidD381D6E8-3446-430e-A465-9393F524269E" DisplayName="Line2" Description="Address Line2" LogicalType="SINGLE_LINE_STRING" Id="SAL02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="6" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid407E305D-FB90-4e23-9404-593F0F9B08D1" DisplayName="Line3" Description="Address Line3" LogicalType="SINGLE_LINE_STRING" Id="SAL03">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="7" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid6D5B39A9-41EC-477D-AA79-4CEF272FF067" DisplayName="City" Description="City" LogicalType="SINGLE_LINE_STRING" Id="SCi01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="8" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guidE88DF247-7CA6-4E4F-B38B-87DDE11EE98C" DisplayName="Code" Description="Zip Code" LogicalType="SINGLE_LINE_STRING" Id="SCo01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="9" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid3FDE5AD1-1624-4215-87F7-7FA40552285C" DisplayName="County" Description="County" LogicalType="SINGLE_LINE_STRING" Id="SCo02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="10" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guidA29B5F8F-BA18-4262-95BD-65B8216D8841" DisplayName="State" Description="State" LogicalType="SINGLE_LINE_STRING" Id="SSt01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="11" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guidDAC78E2E-4C6F-4006-B291-0A42BAB2E339" DisplayName="Country" Description="Country" LogicalType="SINGLE_LINE_STRING" Id="SCo03">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="12" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="SystemId" Description="System Id" LogicalType="SINGLE_LINE_STRING" Id="SId05">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+      <EntityType Id="FAs01" Description="Fraud Assessment" DisplayName="FraudAssessment" Icon="Fraud">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="Id" Description="Identifier" LogicalType="SINGLE_LINE_STRING" Id="IdF01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid537C05E5-A426-4d70-B6EA-640AB6961865" DisplayName="Annotation" Description="Annotation" LogicalType="SINGLE_LINE_STRING" Id="FAn01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guidB696CF9C-BF3C-4311-954F-DD809CEB38CC" DisplayName="Name" Description="Name of the Fraud" LogicalType="SINGLE_LINE_STRING" Id="FNm01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="3" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="FDs01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="4" Mandatory="false" SemanticTypeId="" DisplayName="AssessmentTimestamp" Description="Timestamp of Assessment" LogicalType="DATE" Id="FAT01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="5" Mandatory="false" SemanticTypeId="" DisplayName="AssessmentScore" Description="Score of Assessment" LogicalType="DOUBLE" Id="FAS01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="6" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Context" Description="Context of Assessment" LogicalType="SINGLE_LINE_STRING" Id="FCo01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="7" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Value" Description="Value of Assessment" LogicalType="SINGLE_LINE_STRING" Id="FVa01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="8" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="SystemId" Description="System Id" LogicalType="SINGLE_LINE_STRING" Id="SId04">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+      <EntityType Id="Org01" SemanticTypeId="guidB30A4137-A537-420B-B481-C5DF922152AF" Description="Organization" DisplayName="Organization" Icon="Organ">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid1A611A7F-FC17-4a0d-816B-018E106B0718" DisplayName="TaxId" Description="Tax Id of the Organization" LogicalType="SINGLE_LINE_STRING" Id="OTI01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" SemanticTypeId="guidB8767EA5-841F-4734-B703-BC58786296A3" DisplayName="EstablishedDate" Description="Date of Establishment of the Organisation" LogicalType="DATE" Id="OED01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Type" Description="Type of the Organization" LogicalType="SINGLE_LINE_STRING" Id="OTy01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="3" Mandatory="false" SemanticTypeId="guid5C9AD4B9-1135-4c5a-ABAC-8170C2A14B55" DisplayName="DissolvedDate" Description="Dissolved Date" LogicalType="DATE" Id="ODD01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="4" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="ODs01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="5" Mandatory="false" SemanticTypeId="" DisplayName="IsOrgUnit" Description="Is Org Unit ?" LogicalType="BOOLEAN" Id="IOU01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+      <EntityType Id="TRo01" Description="Transaction Role" DisplayName="TransactionRole" Icon="Notebook">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Type" Description="Transaction Role Type" LogicalType="SINGLE_LINE_STRING" Id="TRT01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="TransactionId" Description="Identifier" LogicalType="SINGLE_LINE_STRING" Id="IdT01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="SystemId" Description="System Id" LogicalType="SINGLE_LINE_STRING" Id="SId14">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+      <EntityType Id="ARo01" Description="Account Role" DisplayName="AccountRole" Icon="Woman">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="Id" Description="Identifier" LogicalType="SINGLE_LINE_STRING" Id="IdA01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Type" Description="Account Role Type" LogicalType="SINGLE_LINE_STRING" Id="ART01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guidC93D1CA5-5FEB-412B-A6E0-CE7893E606AA" DisplayName="AccountId" Description="Account Number" LogicalType="SINGLE_LINE_STRING" Id="ANo01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="3" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Name" Description="Name of the Account Role" LogicalType="SINGLE_LINE_STRING" Id="ANm01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="4" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Description" Description="Description of Account" LogicalType="SINGLE_LINE_STRING" Id="ADs01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="5" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid537C05E5-A426-4d70-B6EA-640AB6961865" DisplayName="Annotation" Description="Annotation" LogicalType="SINGLE_LINE_STRING" Id="AAn01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="6" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="SystemId" Description="System Id" LogicalType="SINGLE_LINE_STRING" Id="SId15">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+      <EntityType Id="Eve01" SemanticTypeId="guid1409ABE3-FB08-4DFA-B25A-BB0D141E3FBF" Description="Event" DisplayName="Event" Icon="Event">
+        <PropertyGroupTypes>
+          <PropertyGroupType Mandatory="false" Position="10" Description="Property" DisplayName="Property" Id="Pro07">
+            <PropertyTypes>
+              <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Type" Description="Property Type" LogicalType="SINGLE_LINE_STRING" Id="PTy07">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Value" Description="Property Value" LogicalType="SINGLE_LINE_STRING" Id="PVa07">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="2" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Form" Description="Property Form" LogicalType="SINGLE_LINE_STRING" Id="PFo07">
+                <PossibleValues />
+              </PropertyType>
+            </PropertyTypes>
+          </PropertyGroupType>
+        </PropertyGroupTypes>
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="Id" Description="Identifier" LogicalType="SINGLE_LINE_STRING" Id="IdE01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid59A239DD-F3EE-4EE2-B3DB-FF5A1195E903" DisplayName="Name" Description="Name" LogicalType="SINGLE_LINE_STRING" Id="ENm01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guidAF9E50C6-9A4B-4EAC-B556-A6FC438E734D" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="EDs01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="3" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid7861226D-5D80-4ef8-9ED9-029D54C228EF" DisplayName="Type" Description="Type" LogicalType="SINGLE_LINE_STRING" Id="ETy01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="4" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid537C05E5-A426-4d70-B6EA-640AB6961865" DisplayName="Annotation" Description="Annotation" LogicalType="SINGLE_LINE_STRING" Id="EAn01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="5" Mandatory="false" SemanticTypeId="" DisplayName="PlannedStart" Description="Planned Start Date" LogicalType="DATE" Id="EPS01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="6" Mandatory="false" SemanticTypeId="" DisplayName="PlannedEnd" Description="Planned End Date" LogicalType="DATE" Id="EPE01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="7" Mandatory="false" SemanticTypeId="guid770074b2-0235-4ade-aca0-f64f9d1986f9" DisplayName="ActualStart" Description="Actual Start Date" LogicalType="DATE" Id="EAS01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="8" Mandatory="false" SemanticTypeId="guid9f0adde3-bdcd-4f36-b657-fc0bdf7a10d5" DisplayName="ActualEnd" Description="Actual End Date" LogicalType="DATE" Id="EAE01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="9" Mandatory="false" SemanticTypeId="" DisplayName="Timestamp" Description="Timestamp" LogicalType="DATE_AND_TIME" Id="ETs01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="11" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="SystemId" Description="System Id" LogicalType="SINGLE_LINE_STRING" Id="SId07">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+      <EntityType Id="Cas01" SemanticTypeId="guid6C7D9311-D676-47cb-9546-68A34BADB498" Description="Case" DisplayName="Case" Icon="Case">
+        <PropertyGroupTypes>
+          <PropertyGroupType Mandatory="false" Position="4" Description="Property" DisplayName="Property" Id="Pro04">
+            <PropertyTypes>
+              <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Type" Description="Property Type" LogicalType="SINGLE_LINE_STRING" Id="PTy04">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Value" Description="Property Value" LogicalType="SINGLE_LINE_STRING" Id="PVa04">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="2" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Form" Description="Property Form" LogicalType="SINGLE_LINE_STRING" Id="PFo04">
+                <PossibleValues />
+              </PropertyType>
+            </PropertyTypes>
+          </PropertyGroupType>
+        </PropertyGroupTypes>
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="Id" Description="Identifier" LogicalType="SINGLE_LINE_STRING" Id="IdC02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Name" Description="Name" LogicalType="SINGLE_LINE_STRING" Id="CNm02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="CDs02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="3" Mandatory="false" SemanticTypeId="" DisplayName="Timestamp" Description="Timestamp" LogicalType="DATE_AND_TIME" Id="CTs02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="5" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="SystemId" Description="System Id" LogicalType="SINGLE_LINE_STRING" Id="SId06">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+      <EntityType Id="Loc01" SemanticTypeId="guidCD3DB3DB-55F6-440A-9BB8-3F3EE4DB4D52" Description="Location" DisplayName="Location" Icon="Place">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid5304A03B-FE47-4406-91E7-0D49EC8409A6" DisplayName="Latitude" Description="Latitude" LogicalType="SINGLE_LINE_STRING" Id="LLa01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid14BCA0EC-D67A-4A67-BC36-CFF650FD77A9" DisplayName="Longitude" Description="Longitude" LogicalType="SINGLE_LINE_STRING" Id="LLo01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+      <EntityType Id="Acc01" SemanticTypeId="guid27206a86-a8bb-431a-84c2-b1f4b0a7fa10" Description="Account" DisplayName="Account" Icon="Account">
+        <PropertyGroupTypes>
+          <PropertyGroupType Mandatory="false" Position="11" Description="Account Balance" DisplayName="AccountBalance" Id="ABa01">
+            <PropertyTypes>
+              <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Type" Description="Type of Balance" LogicalType="SINGLE_LINE_STRING" Id="ABT01">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="1" Mandatory="false" SemanticTypeId="" DisplayName="Timestamp" Description="Timestamp" LogicalType="DATE_AND_TIME" Id="ABT02">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="2" Mandatory="false" SemanticTypeId="" DisplayName="Balance" Description="Balance" LogicalType="DECIMAL" Id="ABB01">
+                <PossibleValues />
+              </PropertyType>
+            </PropertyTypes>
+          </PropertyGroupType>
+          <PropertyGroupType Mandatory="false" Position="12" Description="Property" DisplayName="Property" Id="Pro06">
+            <PropertyTypes>
+              <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Type" Description="Property Type" LogicalType="SINGLE_LINE_STRING" Id="PTy06">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Value" Description="Property Value" LogicalType="SINGLE_LINE_STRING" Id="PVa06">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="2" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Form" Description="Property Form" LogicalType="SINGLE_LINE_STRING" Id="PFo06">
+                <PossibleValues />
+              </PropertyType>
+            </PropertyTypes>
+          </PropertyGroupType>
+        </PropertyGroupTypes>
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="Id" Description="Identifier" LogicalType="SINGLE_LINE_STRING" Id="IdA02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid537C05E5-A426-4d70-B6EA-640AB6961865" DisplayName="Annotation" Description="Annotation" LogicalType="SINGLE_LINE_STRING" Id="AAn02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid22340EB0-01BB-4263-928E-FC971ACB3C51" DisplayName="Name" Description="Name" LogicalType="SINGLE_LINE_STRING" Id="ANm02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="3" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="ADs02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="4" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid0FA4C573-0436-4360-AEA7-F123F1994B8E" DisplayName="Type" Description="Type" LogicalType="SINGLE_LINE_STRING" Id="ATy01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="5" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="UniqueReference" Description="Unique Reference" LogicalType="SINGLE_LINE_STRING" Id="AUR01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="6" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid3CD52E22-5E43-4F39-9DCF-8B13B9CE78B2" DisplayName="RoutingCode" Description="Routing Code" LogicalType="SINGLE_LINE_STRING" Id="ARC01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="7" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Status" Description="Status" LogicalType="SINGLE_LINE_STRING" Id="ASt01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="8" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Purpose" Description="Purpose" LogicalType="SINGLE_LINE_STRING" Id="APu01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="9" Mandatory="false" SemanticTypeId="" DisplayName="OriginationTimestamp" Description="Origination Timestamp" LogicalType="DATE" Id="AOT01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="10" Mandatory="false" SemanticTypeId="" DisplayName="Timestamp" Description="Timestamp" LogicalType="DATE_AND_TIME" Id="ATs01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="13" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="SystemId" Description="System Id" LogicalType="SINGLE_LINE_STRING" Id="SId01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+      <EntityType Id="Car01" SemanticTypeId="guidAC25B63E-08E7-4ae6-8359-27815E2A3525" Description="Card" DisplayName="Card" Icon="Credit Card">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="Id" Description="Identifier" LogicalType="SINGLE_LINE_STRING" Id="IdC01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid5EADE4D4-93CE-420c-9551-354309F6A377" DisplayName="CardNumber" Description="Card Number" LogicalType="SINGLE_LINE_STRING" Id="CNo01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Name" Description="Name" LogicalType="SINGLE_LINE_STRING" Id="CNm01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="3" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guidF6CEC770-1065-4702-AC4C-6ED771C8A6E1" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="CDs01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="4" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid8B0533B7-5B8C-4927-94E0-48F1D57FC7C8" DisplayName="Type" Description="Card Type" LogicalType="SINGLE_LINE_STRING" Id="CTy01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="5" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Code" Description="Code" LogicalType="SINGLE_LINE_STRING" Id="CCo01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="6" Mandatory="false" SemanticTypeId="" DisplayName="Timestamp" Description="Timestamp" LogicalType="DATE_AND_TIME" Id="CTs01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="7" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="SystemId" Description="System Id" LogicalType="SINGLE_LINE_STRING" Id="SId02">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+      <EntityType Id="Pro02" SemanticTypeId="guidD3676BFD-BAE1-465d-BF49-4AD816CD34D3" Description="Product" DisplayName="Product" Icon="Store">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="Id" Description="Identifier" LogicalType="SINGLE_LINE_STRING" Id="IdP03">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Name" Description="Product Name" LogicalType="SINGLE_LINE_STRING" Id="PNm02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="PDs02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="3" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Type" Description="Product Type" LogicalType="SINGLE_LINE_STRING" Id="PTy02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="4" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="SystemId" Description="System Id" LogicalType="SINGLE_LINE_STRING" Id="SId03">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+      <EntityType Id="POb01" Description="Physical Object" DisplayName="PhysicalObject" Icon="Container">
+        <PropertyGroupTypes>
+          <PropertyGroupType Mandatory="false" Position="9" Description="Property" DisplayName="Property" Id="Pro03">
+            <PropertyTypes>
+              <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Type" Description="Property Type" LogicalType="SINGLE_LINE_STRING" Id="PTy03">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Value" Description="Property Value" LogicalType="SINGLE_LINE_STRING" Id="PVa03">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="2" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Form" Description="Property Form" LogicalType="SINGLE_LINE_STRING" Id="PFo03">
+                <PossibleValues />
+              </PropertyType>
+            </PropertyTypes>
+          </PropertyGroupType>
+        </PropertyGroupTypes>
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="Id" Description="Id" LogicalType="SINGLE_LINE_STRING" Id="IdP02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Name" Description="Name" LogicalType="SINGLE_LINE_STRING" Id="PNm01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="PDs01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="3" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Type" Description="Object Type" LogicalType="SINGLE_LINE_STRING" Id="POT01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="4" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="ObjectMake" Description="Object Make" LogicalType="SINGLE_LINE_STRING" Id="POM01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="5" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="ObjectModel" Description="Object Model" LogicalType="SINGLE_LINE_STRING" Id="POM02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="6" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Identifier" Description="Identifier" LogicalType="SINGLE_LINE_STRING" Id="PId01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="7" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid537C05E5-A426-4d70-B6EA-640AB6961865" DisplayName="Annotation" Description="Annotation" LogicalType="SINGLE_LINE_STRING" Id="PAn02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="8" Mandatory="false" SemanticTypeId="" DisplayName="Timestamp" Description="Timestamp" LogicalType="DATE_AND_TIME" Id="PTs02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="10" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="SystemId" Description="System Id" LogicalType="SINGLE_LINE_STRING" Id="SId09">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+      <EntityType Id="Tra01" Description="Transaction" DisplayName="Transaction" Icon="Billing Account">
+        <PropertyGroupTypes>
+          <PropertyGroupType Mandatory="false" Position="11" Description="Property" DisplayName="Property" Id="Pro05">
+            <PropertyTypes>
+              <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Type" Description="Property Type" LogicalType="SINGLE_LINE_STRING" Id="PTy05">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Value" Description="Property Value" LogicalType="SINGLE_LINE_STRING" Id="PVa05">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="2" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Form" Description="Property Form" LogicalType="SINGLE_LINE_STRING" Id="PFo05">
+                <PossibleValues />
+              </PropertyType>
+            </PropertyTypes>
+          </PropertyGroupType>
+        </PropertyGroupTypes>
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="Id" Description="Identifier" LogicalType="SINGLE_LINE_STRING" Id="IdT02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="SystemId" Description="System Id" LogicalType="SINGLE_LINE_STRING" Id="TSy01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="false" SemanticTypeId="guidBCAD30E5-D249-412f-83BF-00AA0FF5B7EC" DisplayName="BusinessTimestamp" Description="Business Timestamp" LogicalType="DATE" Id="TBT01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="3" Mandatory="false" SemanticTypeId="" DisplayName="CurrencyValue" Description="Currency Value" LogicalType="DECIMAL" Id="TCV01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="4" Mandatory="false" SemanticTypeId="" DisplayName="NormalizedValue" Description="Normalized Value" LogicalType="DECIMAL" Id="TNV01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="5" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid4FC4F9B1-3C63-4CCE-BA97-42E76BAD96A6" DisplayName="Currency" Description="Currency" LogicalType="SINGLE_LINE_STRING" Id="TCu01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="6" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Type" Description="Transaction Type" LogicalType="SINGLE_LINE_STRING" Id="TTy01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="7" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid537C05E5-A426-4d70-B6EA-640AB6961865" DisplayName="Annotation" Description="Annotation" LogicalType="SINGLE_LINE_STRING" Id="TAn01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="8" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="TransactionReference" Description="Transaction Reference" LogicalType="SINGLE_LINE_STRING" Id="TRe01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="9" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="TDs01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="10" Mandatory="false" SemanticTypeId="" DisplayName="Timestamp" Description="Timestamp" LogicalType="DATE_AND_TIME" Id="TTs01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+      <EntityType Id="TCR01" Description="Transaction Channel Reference" DisplayName="Channel" Icon="Evidence Collection">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="Id" Description="Identifier" LogicalType="SINGLE_LINE_STRING" Id="IdT03">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Name" Description="Name" LogicalType="SINGLE_LINE_STRING" Id="TNm01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="TDs02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="3" Mandatory="false" SemanticTypeId="" DisplayName="Interactive" Description="Is Interactive ?" LogicalType="BOOLEAN" Id="TIn01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="4" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="SystemId" Description="System Id" LogicalType="SINGLE_LINE_STRING" Id="SId10">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+      <EntityType Id="43cd717c-0204-4c81-93ea-f9f0458bc5ea" Description="Stored Query" DisplayName="Query" Icon="StoredQuery">
+        <PropertyGroupTypes>
+          <PropertyGroupType Mandatory="false" Position="5" Description="Presentation Metadata. This data is private to the stored query and is not directly editable." DisplayName="Query Presentation" Id="2c818fa6-68c4-42a4-9bc3-c34bcdc4379a">
+            <PropertyTypes>
+              <PropertyType Position="0" Mandatory="true" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Format" Description="Presentation Format Type. This data is private to the stored query and is not directly editable." LogicalType="SINGLE_LINE_STRING" Id="97f76ffe-1ece-4d5b-9e20-ea66b572b2c5">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="String Data" Description="Presentation String Data. This data is private to the stored query and is not directly editable." LogicalType="SINGLE_LINE_STRING" Id="b58f34b6-60fb-4730-a4aa-156bf4e817e0">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="2" Mandatory="false" SemanticTypeId="" DisplayName="XML Data" Description="Presentation XML Data. This data is private to the stored query and is not directly editable." LogicalType="XML" Id="ab2fdf78-ddd8-49b2-872a-f5c8ac2106d5">
+                <PossibleValues />
+              </PropertyType>
+            </PropertyTypes>
+          </PropertyGroupType>
+        </PropertyGroupTypes>
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="true" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Name" Description="User-specified name of this stored query" LogicalType="SINGLE_LINE_STRING" Id="98ce27bc-50d7-4fa0-89b0-d6440cdb12fd">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" SemanticTypeId="" DisplayName="Description" Description="Description of this stored query" LogicalType="MULTIPLE_LINE_STRING" Id="a30ddbca-6c14-4454-bdb0-811a5b5beb16">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="true" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Query Type" Description="Stored Query Type. This data is private to the stored query and is not directly editable." LogicalType="SINGLE_LINE_STRING" Id="5ae10920-6d60-419f-80db-ba5b9935d93b">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="3" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Query Definition (String)" Description="Stored Query String Definition. This data is private to the stored query and is not directly editable." LogicalType="SINGLE_LINE_STRING" Id="17903032-1cd1-4524-94ef-a35aab212e6a">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="4" Mandatory="false" SemanticTypeId="" DisplayName="Query Definition (XML)" Description="Stored Query XML Definition. This data is private to the stored query and is not directly editable." LogicalType="XML" Id="f5916739-a962-4c01-95d3-2598bfabc1b5">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+      <EntityType Id="Grp01" SemanticTypeId="guid68514D1F-DCC4-437f-A724-9F0D6B031587" Description="Group" DisplayName="Group" Icon="Group of People">
+        <PropertyGroupTypes>
+          <PropertyGroupType Mandatory="false" Position="4" Description="Property" DisplayName="Property" Id="Pro09">
+            <PropertyTypes>
+              <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Type" Description="Property Type" LogicalType="SINGLE_LINE_STRING" Id="PTy09">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Value" Description="Property Value" LogicalType="SINGLE_LINE_STRING" Id="PVa09">
+                <PossibleValues />
+              </PropertyType>
+              <PropertyType Position="2" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Form" Description="Property Form" LogicalType="SINGLE_LINE_STRING" Id="PFo09">
+                <PossibleValues />
+              </PropertyType>
+            </PropertyTypes>
+          </PropertyGroupType>
+        </PropertyGroupTypes>
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="Id" Description="Identification" LogicalType="SINGLE_LINE_STRING" Id="IdG01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Name" Description="Name" LogicalType="SINGLE_LINE_STRING" Id="GNm01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="GDs01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="3" Mandatory="false" SemanticTypeId="" DisplayName="Timestamp" Description="" LogicalType="DATE_AND_TIME" Id="GTs01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="5" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="SystemId" Description="System Id" LogicalType="SINGLE_LINE_STRING" Id="SId08">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+      <EntityType Id="CPt01" Description="Contact Point" DisplayName="ContactPoint" Icon="Phone">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Type" Description="Type" LogicalType="SINGLE_LINE_STRING" Id="CTy02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Name" Description="Name" LogicalType="SINGLE_LINE_STRING" Id="CNm03">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="CDs03">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="3" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Text" Description="Text" LogicalType="SINGLE_LINE_STRING" Id="CTe01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </EntityType>
+    </EntityTypes>
+    <LinkTypes>
+      <LinkType Id="dab2f6f2-813c-4a47-b630-b91f52a1e0e1" Description="Alert Feed Subscription - This data is private to the alerting service and is not directly editable." DisplayName="Alert Feed Subscription" FromTypeIds="642330a9-1eca-43d0-9f45-a3ca2fd8a1bb" ToTypeIds="1274e2e7-7751-4dae-a994-648718e19f04">
+        <PropertyGroupTypes>
+          <PropertyGroupType Mandatory="false" Position="0" Description="The way(s) through which alerts are given" DisplayName="Alert delivery methods" Id="84aa56e3-84a1-4c05-9a77-4f9185202a55">
+            <PropertyTypes>
+              <PropertyType Position="0" Mandatory="false" SemanticTypeId="" DisplayName="By alert retrieval" Description="Through the alert retrieval webservice" LogicalType="BOOLEAN" Id="72367e78-b265-46e1-8fc8-81f42d307e40">
+                <PossibleValues />
+              </PropertyType>
+            </PropertyTypes>
+          </PropertyGroupType>
+        </PropertyGroupTypes>
+        <PropertyTypes />
+      </LinkType>
+      <LinkType Id="PNm03" SemanticTypeId="guidE48ED0E7-3D02-4481-B98C-8D3BDAFDAB92" Description="Party-Name" DisplayName="Party-Name" FromTypeIds="Par01" ToTypeIds="Nam01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="Unique Reference" LogicalType="SINGLE_LINE_STRING" Id="PNU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="PND01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="PSA01" SemanticTypeId="guid18E7D3EF-0694-4DB7-8AA7-4BCEF634391E" Description="Party-StreetAddress" DisplayName="Party-StreetAddress" FromTypeIds="Par01" ToTypeIds="SAd01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="Unique Reference" LogicalType="SINGLE_LINE_STRING" Id="PSU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="PSD01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="false" SemanticTypeId="guidB8767EA5-841F-4734-B703-BC58786296A3" DisplayName="StartDate" Description="Start Date" LogicalType="DATE_AND_TIME" Id="PSS01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="3" Mandatory="false" SemanticTypeId="guid5C9AD4B9-1135-4c5a-ABAC-8170C2A14B55" DisplayName="EndDate" Description="End Date" LogicalType="DATE_AND_TIME" Id="PSE01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="4" Mandatory="false" SemanticTypeId="" DisplayName="IsPrimary" Description="Is Primary Address" LogicalType="BOOLEAN" Id="PSI01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="PFA01" SemanticTypeId="guidE48ED0E7-3D02-4481-B98C-8D3BDAFDAB92" Description="Party-FraudAssessment" DisplayName="Party-FraudAssessment" FromTypeIds="Par01" ToTypeIds="FAs01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="Unique Reference" LogicalType="SINGLE_LINE_STRING" Id="PFU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="PFD01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="PId02" SemanticTypeId="guidE48ED0E7-3D02-4481-B98C-8D3BDAFDAB92" Description="Party-Identification" DisplayName="Party-Identification" FromTypeIds="Par01" ToTypeIds="Ide01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="Unique Reference" LogicalType="SINGLE_LINE_STRING" Id="PIU02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="PID02">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="PTR01" SemanticTypeId="guidE48ED0E7-3D02-4481-B98C-8D3BDAFDAB92" Description="Party-TransactionRole" DisplayName="Party-TransactionRole" FromTypeIds="Par01" ToTypeIds="TRo01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="Unique Reference" LogicalType="SINGLE_LINE_STRING" Id="PTU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="PTD01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="PAR01" SemanticTypeId="guidE48ED0E7-3D02-4481-B98C-8D3BDAFDAB92" Description="Party-AccountRole" DisplayName="Party-AccountRole" FromTypeIds="Par01" ToTypeIds="ARo01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="Unique Reference" LogicalType="SINGLE_LINE_STRING" Id="PAU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="PAD01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="ACa01" SemanticTypeId="guidE48ED0E7-3D02-4481-B98C-8D3BDAFDAB92" Description="Account-Card" DisplayName="Account-Card" FromTypeIds="Acc01" ToTypeIds="Car01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="Unique Reference" LogicalType="SINGLE_LINE_STRING" Id="ACU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="ACD01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="APd01" SemanticTypeId="guidE48ED0E7-3D02-4481-B98C-8D3BDAFDAB92" Description="Account-Product" DisplayName="Account-Product" FromTypeIds="Acc01" ToTypeIds="Pro02">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="Unique Reference" LogicalType="SINGLE_LINE_STRING" Id="APU02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="APD02">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="AFA01" SemanticTypeId="guidE48ED0E7-3D02-4481-B98C-8D3BDAFDAB92" Description="Account-FraudAssessment" DisplayName="Account-FraudAssessment" FromTypeIds="Acc01" ToTypeIds="FAs01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="Unique Reference" LogicalType="SINGLE_LINE_STRING" Id="AFU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="AFD01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="ASA01" SemanticTypeId="guid18E7D3EF-0694-4DB7-8AA7-4BCEF634391E" Description="Account-StreetAddress" DisplayName="Account-StreetAddress" FromTypeIds="Acc01" ToTypeIds="SAd01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="Unique Reference" LogicalType="SINGLE_LINE_STRING" Id="ASU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="ASD01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="2" Mandatory="false" SemanticTypeId="guidB8767EA5-841F-4734-B703-BC58786296A3" DisplayName="StartDate" Description="Start Date" LogicalType="DATE" Id="ASS01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="3" Mandatory="false" SemanticTypeId="guid5C9AD4B9-1135-4c5a-ABAC-8170C2A14B55" DisplayName="EndDate" Description="End Date" LogicalType="DATE" Id="ASE01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="4" Mandatory="false" SemanticTypeId="" DisplayName="IsPrimary" Description="Is Primary Address" LogicalType="BOOLEAN" Id="ASI01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="TCa01" SemanticTypeId="guidE48ED0E7-3D02-4481-B98C-8D3BDAFDAB92" Description="Transaction-Card" DisplayName="Transaction-Card" FromTypeIds="Tra01" ToTypeIds="Car01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="Unique Reference" LogicalType="SINGLE_LINE_STRING" Id="TCU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="TCD01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="TFA01" SemanticTypeId="guidE48ED0E7-3D02-4481-B98C-8D3BDAFDAB92" Description="Transaction-FraudAssessment" DisplayName="Transaction-FraudAssessment" FromTypeIds="Tra01" ToTypeIds="FAs01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="Unique Reference" LogicalType="SINGLE_LINE_STRING" Id="TFU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="TFD01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="POF01" SemanticTypeId="guidE48ED0E7-3D02-4481-B98C-8D3BDAFDAB92" Description="PhysicalObject-FraudAssessment" DisplayName="PhysicalObject-FraudAssessment" FromTypeIds="POb01" ToTypeIds="FAs01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="Unique Reference" LogicalType="SINGLE_LINE_STRING" Id="PFU02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="PFD02">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="ELo01" SemanticTypeId="guidE48ED0E7-3D02-4481-B98C-8D3BDAFDAB92" Description="Event-Location" DisplayName="Event-Location" FromTypeIds="Eve01" ToTypeIds="Loc01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="Unique Reference" LogicalType="SINGLE_LINE_STRING" Id="ELU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="ELD01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="ESA01" SemanticTypeId="guidE48ED0E7-3D02-4481-B98C-8D3BDAFDAB92" Description="Event-StreetAddress" DisplayName="Event-StreetAddress" FromTypeIds="Eve01" ToTypeIds="SAd01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="Unique Reference" LogicalType="SINGLE_LINE_STRING" Id="ESU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="ESD01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="EFA01" SemanticTypeId="guidE48ED0E7-3D02-4481-B98C-8D3BDAFDAB92" Description="Event-FraudAssessment" DisplayName="Event-FraudAssessment" FromTypeIds="Eve01" ToTypeIds="FAs01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="Unique Reference" LogicalType="SINGLE_LINE_STRING" Id="EFU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="EFD01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="DOf01" SemanticTypeId="guid2B55231E-521E-4502-8989-3BE1DB0B864D" Description="Duplicate Of" DisplayName="DuplicateOf" FromTypeIds="Par01 Nam01 Ind01 Ide01 SAd01 FAs01 Org01 TRo01 ARo01 Eve01 Cas01 Loc01 Acc01 Car01 Pro02 POb01 Tra01 TCR01 Grp01 CPt01" ToTypeIds="Par01 Nam01 Ind01 Ide01 SAd01 FAs01 Org01 TRo01 ARo01 Eve01 Cas01 Loc01 Acc01 Car01 Pro02 POb01 Tra01 TCR01 Grp01 CPt01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" SemanticTypeId="" DisplayName="AdditionalInformation" Description="Additional Information" LogicalType="MULTIPLE_LINE_STRING" Id="DAI01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="PCP01" SemanticTypeId="guidE48ED0E7-3D02-4481-B98C-8D3BDAFDAB92" Description="Party-ContactPoint" DisplayName="Party-ContactPoint" FromTypeIds="Par01" ToTypeIds="CPt01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="Unique Reference" LogicalType="SINGLE_LINE_STRING" Id="PCU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="PCD01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="GFA01" SemanticTypeId="guidE48ED0E7-3D02-4481-B98C-8D3BDAFDAB92" Description="Group-FraudAssessment" DisplayName="Group-FraudAssessment" FromTypeIds="Grp01" ToTypeIds="FAs01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="UniqueReference" LogicalType="SINGLE_LINE_STRING" Id="GFU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="GFD01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="PPa01" SemanticTypeId="guid3C07BD39-5F65-4fb0-B87F-5B633BCF9B04" Description="Party-Party" DisplayName="Party-Party" FromTypeIds="Par01" ToTypeIds="Par01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="UniqueReference" LogicalType="SINGLE_LINE_STRING" Id="PPU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="PPD01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="PIn01" SemanticTypeId="guid3C07BD39-5F65-4fb0-B87F-5B633BCF9B04" Description="Party-Individual" DisplayName="Party-Individual" FromTypeIds="Par01" ToTypeIds="Ind01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="UniqueReference" LogicalType="SINGLE_LINE_STRING" Id="PIU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="PID01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="POr01" SemanticTypeId="guid3C07BD39-5F65-4fb0-B87F-5B633BCF9B04" Description="Party-Organization" DisplayName="Party-Organization" FromTypeIds="Par01" ToTypeIds="Org01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="UniqueReference" LogicalType="SINGLE_LINE_STRING" Id="POU02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="POD02">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="AAt01" SemanticTypeId="guid3C07BD39-5F65-4fb0-B87F-5B633BCF9B04" Description="Account-Account" DisplayName="Account-Account" FromTypeIds="Acc01" ToTypeIds="Acc01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="UniqueReference" LogicalType="SINGLE_LINE_STRING" Id="AAU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="AAD01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="OIn01" SemanticTypeId="guid3C07BD39-5F65-4fb0-B87F-5B633BCF9B04" Description="Organization-Individual" DisplayName="Organization-Individual" FromTypeIds="Org01" ToTypeIds="Ind01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="UniqueReference" LogicalType="SINGLE_LINE_STRING" Id="OIU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="OID01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="OId01" SemanticTypeId="guid3C07BD39-5F65-4fb0-B87F-5B633BCF9B04" Description="Organization-Identification" DisplayName="Organization-Identification" FromTypeIds="Org01" ToTypeIds="Ide01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="UniqueReference" LogicalType="SINGLE_LINE_STRING" Id="OIU02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="OID02">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="GAC01" SemanticTypeId="guid3C07BD39-5F65-4fb0-B87F-5B633BCF9B04" Description="Group-Account" DisplayName="Group-Account" FromTypeIds="Grp01" ToTypeIds="Acc01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="UniqueReference" LogicalType="SINGLE_LINE_STRING" Id="GAU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="GAD01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="GTR01" SemanticTypeId="guid3C07BD39-5F65-4fb0-B87F-5B633BCF9B04" Description="Group-Transaction" DisplayName="Group-Transaction" FromTypeIds="Grp01" ToTypeIds="Tra01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="UniqueReference" Description="UniqueReference" LogicalType="SINGLE_LINE_STRING" Id="GTU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="GTD01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="GIn01" SemanticTypeId="guid3C07BD39-5F65-4fb0-B87F-5B633BCF9B04" Description="Group-Individual" DisplayName="Group-Individual" FromTypeIds="Grp01" ToTypeIds="Ind01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="UniqueReference" LogicalType="SINGLE_LINE_STRING" Id="GIU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="GID01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="GOr01" Description="Group-Organization" DisplayName="Group-Organization" FromTypeIds="Grp01" ToTypeIds="Org01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="UniqueReference" LogicalType="SINGLE_LINE_STRING" Id="GOU02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="GOD02">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="EEv01" SemanticTypeId="guid3C07BD39-5F65-4fb0-B87F-5B633BCF9B04" Description="Event-Event" DisplayName="Event-Event" FromTypeIds="Eve01" ToTypeIds="Eve01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="UniqueReference" LogicalType="SINGLE_LINE_STRING" Id="EEU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="EED01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="TRT02" SemanticTypeId="guid3C07BD39-5F65-4fb0-B87F-5B633BCF9B04" Description="TransactionRole-Transaction" DisplayName="TransactionRole-Transaction" FromTypeIds="TRo01" ToTypeIds="Tra01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="UniqueReference" LogicalType="SINGLE_LINE_STRING" Id="TTU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="TTD01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="SLo01" SemanticTypeId="guid3C07BD39-5F65-4fb0-B87F-5B633BCF9B04" Description="StreetAddress-Location" DisplayName="StreetAddress-Location" FromTypeIds="SAd01" ToTypeIds="Loc01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="UniqueReference" LogicalType="SINGLE_LINE_STRING" Id="SLU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="SLD01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="ARA01" Description="AccountRole-Account" DisplayName="AccountRole-Account" FromTypeIds="ARo01" ToTypeIds="Acc01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="UniqueReference" LogicalType="SINGLE_LINE_STRING" Id="ARU02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="ARD02">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="CGp01" SemanticTypeId="guid3C07BD39-5F65-4fb0-B87F-5B633BCF9B04" Description="Case-Group" DisplayName="Case-Group" FromTypeIds="Cas01" ToTypeIds="Grp01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="UniqueReference" LogicalType="SINGLE_LINE_STRING" Id="CGU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="CGD01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="CTr01" SemanticTypeId="guid3C07BD39-5F65-4fb0-B87F-5B633BCF9B04" Description="Case-Transaction" DisplayName="Case-Transaction" FromTypeIds="Cas01" ToTypeIds="Tra01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="UniqueReference" LogicalType="SINGLE_LINE_STRING" Id="CTU02">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="CTD02">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="CPa01" SemanticTypeId="guid3C07BD39-5F65-4fb0-B87F-5B633BCF9B04" Description="Case-Party" DisplayName="Case-Party" FromTypeIds="Cas01" ToTypeIds="Par01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="UniqueReference" LogicalType="SINGLE_LINE_STRING" Id="CPU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="CPD01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="CAc01" SemanticTypeId="guid3C07BD39-5F65-4fb0-B87F-5B633BCF9B04" Description="Case-Account" DisplayName="Case-Account" FromTypeIds="Cas01" ToTypeIds="Acc01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="UniqueReference" LogicalType="SINGLE_LINE_STRING" Id="CAU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="CAD01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="CEv01" Description="Case-Event" DisplayName="Case-Event" FromTypeIds="Cas01" ToTypeIds="Eve01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="UniqueReference" LogicalType="SINGLE_LINE_STRING" Id="CEU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="CED01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="COj01" SemanticTypeId="guid3C07BD39-5F65-4fb0-B87F-5B633BCF9B04" Description="Case-PhysicalObject" DisplayName="Case-PhysicalObject" FromTypeIds="Cas01" ToTypeIds="POb01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="UniqueReference" LogicalType="SINGLE_LINE_STRING" Id="COU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="COD01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+      <LinkType Id="TTC01" Description="Transaction-Channel" DisplayName="Transaction-Channel" FromTypeIds="Tra01" ToTypeIds="TCR01">
+        <PropertyGroupTypes />
+        <PropertyTypes>
+          <PropertyType Position="0" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid77591248-AE21-4853-8F0E-C91F8E33E32F" DisplayName="UniqueReference" Description="UniqueReference" LogicalType="SINGLE_LINE_STRING" Id="TRU01">
+            <PossibleValues />
+          </PropertyType>
+          <PropertyType Position="1" Mandatory="false" MaximumLengthChars="250" SemanticTypeId="guid359AD9EB-8AC2-4c0d-82E6-AA77734CC423" DisplayName="Description" Description="Description" LogicalType="SINGLE_LINE_STRING" Id="TRD01">
+            <PossibleValues />
+          </PropertyType>
+        </PropertyTypes>
+      </LinkType>
+    </LinkTypes>
+  </ItemTypes>
+  <Id>a4d2082c-2f84-4663-8fea-8205c1b0a32e</Id>
+  <Version>277</Version>
+  <SourceInfoMandatoryFields IsDateMandatory="false" IsDescriptionMandatory="false" IsReferenceMandatory="false" IsTypeMandatory="false" />
+  <LinkStrengthInfo DefaultLinkStrengthId="f232caa8-cf55-4d9a-8c21-19a55b0447da">
+    <LinkStrengths>
+      <LinkStrength Id="f232caa8-cf55-4d9a-8c21-19a55b0447da" Name="Confirmed" LineStyle="SOLID" />
+      <LinkStrength Id="59f66ee2-0abe-4036-a11d-07ed4175720e" Name="Unconfirmed" LineStyle="DASHED" />
+      <LinkStrength Id="f0d2ff1c-28cb-4afe-8cbb-89e198c910a3" Name="Tentative" LineStyle="DOTTED" />
+    </LinkStrengths>
+  </LinkStrengthInfo>
+  <LabelingSchemes>
+    <LabelingScheme Name="Counter Fraud Labelling Scheme" Id="LSc01">
+      <LabelDefinitions>
+        <LabelDefinition ItemTypeId="372a12af-f684-41c5-9ce9-759b3beef826">
+          <LabelParts>
+            <LabelPart Value="07e81445-0f5e-4340-b355-c82809e895da" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="642330a9-1eca-43d0-9f45-a3ca2fd8a1bb">
+          <LabelParts>
+            <LabelPart Value="ce3d12ac-2632-4a0f-b2b6-6a7fdda887a6" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="1274e2e7-7751-4dae-a994-648718e19f04">
+          <LabelParts>
+            <LabelPart Value="b7b059a0-1079-45ac-8ae0-ee026f70dd69" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="dab2f6f2-813c-4a47-b630-b91f52a1e0e1">
+          <LabelParts>
+            <LabelPart Value="Subscribed to" LabelPartType="LITERAL" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="cf17d636-44c9-4897-b19d-7d2eda002e57">
+          <LabelParts>
+            <LabelPart Value="d6d03ce2-3cd6-49c1-8a66-366d0e434fd4" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="Par01">
+          <LabelParts>
+		  <LabelPart Value="SId11" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="IdP01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="Nam01">
+          <LabelParts>
+            <LabelPart Value="NTe01" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="NTy01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="Ind01">
+          <LabelParts>
+            <LabelPart Value="IGe01" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="IBD01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="Ide01">
+          <LabelParts>
+            <LabelPart Value="IdI01" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="ITy01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="SAd01">
+          <LabelParts>
+            <LabelPart Value="SNo01" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="SCi01" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="SSt01" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="SCo01" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="SCo02" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="FAs01">
+          <LabelParts>
+            <LabelPart Value="IdF01" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="FNm01" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="FAS01" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="FVa01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="Org01">
+          <LabelParts>
+            <LabelPart Value="OTI01" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="OTy01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="TRo01">
+          <LabelParts>
+            <LabelPart Value="IdT01" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="TRT01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="ARo01">
+          <LabelParts>
+            <LabelPart Value="ANo01" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="ART01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="Eve01">
+          <LabelParts>
+            <LabelPart Value="IdE01" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="ENm01" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="ETy01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="Cas01">
+          <LabelParts>
+            <LabelPart Value="IdC02" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="CNm02" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="Loc01">
+          <LabelParts>
+            <LabelPart Value="LLa01" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="LLo01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="Acc01">
+          <LabelParts>
+            <LabelPart Value="AUR01" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="ANm02" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="ATy01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="Car01">
+          <LabelParts>
+            <LabelPart Value="CNo01" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="CNm01" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="CTy01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="Pro02">
+          <LabelParts>
+            <LabelPart Value="IdP03" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="PNm02" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="PTy02" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="POb01">
+          <LabelParts>
+            <LabelPart Value="PId01" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="PNm01" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="POT01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="Tra01">
+          <LabelParts>
+            <LabelPart Value="IdT02" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="TTy01" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="TRe01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="TCR01">
+          <LabelParts>
+            <LabelPart Value="IdT03" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="TNm01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="PNm03">
+          <LabelParts>
+            <LabelPart Value="PNU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="PSA01">
+          <LabelParts>
+            <LabelPart Value="Known Address" LabelPartType="LITERAL" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="PFA01">
+          <LabelParts>
+            <LabelPart Value="PFU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="PId02">
+          <LabelParts>
+            <LabelPart Value="PIU02" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="PTR01">
+          <LabelParts>
+            <LabelPart Value="PTU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="PAR01">
+          <LabelParts>
+            <LabelPart Value="PAU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="ACa01">
+          <LabelParts>
+            <LabelPart Value="ACU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="APd01">
+          <LabelParts>
+            <LabelPart Value="APU02" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="AFA01">
+          <LabelParts>
+            <LabelPart Value="AFU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="ASA01">
+          <LabelParts>
+            <LabelPart Value="ASU01" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="TCa01">
+          <LabelParts>
+            <LabelPart Value="TCU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="TFA01">
+          <LabelParts>
+            <LabelPart Value="TFU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="POF01">
+          <LabelParts>
+            <LabelPart Value="PFU02" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="ELo01">
+          <LabelParts>
+            <LabelPart Value="ELU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="ESA01">
+          <LabelParts>
+            <LabelPart Value="ESU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="EFA01">
+          <LabelParts>
+            <LabelPart Value="EFU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="DOf01">
+          <LabelParts>
+            <LabelPart Value="DAI01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="43cd717c-0204-4c81-93ea-f9f0458bc5ea">
+          <LabelParts />
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="Grp01">
+          <LabelParts>
+            <LabelPart Value="IdG01" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="GNm01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="CPt01">
+          <LabelParts>
+            <LabelPart Value="CTy02" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="CNm03" LabelPartType="PROPERTY_TYPE" />
+            <LabelPart Value="," LabelPartType="LITERAL" />
+            <LabelPart Value=" " LabelPartType="LITERAL" />
+            <LabelPart Value="CTe01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="PCP01">
+          <LabelParts>
+            <LabelPart Value="Contact Point" LabelPartType="LITERAL" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="GFA01">
+          <LabelParts>
+            <LabelPart Value="GFU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="PPa01">
+          <LabelParts>
+            <LabelPart Value="Relative Of" LabelPartType="LITERAL" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="PIn01">
+          <LabelParts>
+            <LabelPart Value="PIU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="POr01">
+          <LabelParts>
+            <LabelPart Value="POU02" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="AAt01">
+          <LabelParts>
+            <LabelPart Value="AAU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="OIn01">
+          <LabelParts>
+            <LabelPart Value="OIU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="OId01">
+          <LabelParts>
+            <LabelPart Value="OIU02" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="GAC01">
+          <LabelParts>
+            <LabelPart Value="GAU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="GTR01">
+          <LabelParts>
+            <LabelPart Value="GTU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="GIn01">
+          <LabelParts>
+            <LabelPart Value="GIU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="GOr01">
+          <LabelParts>
+            <LabelPart Value="GOU02" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="EEv01">
+          <LabelParts>
+            <LabelPart Value="EEU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="TRT02">
+          <LabelParts>
+            <LabelPart Value="TTU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="SLo01">
+          <LabelParts>
+            <LabelPart Value="SLU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="ARA01">
+          <LabelParts>
+            <LabelPart Value="ARU02" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="CGp01">
+          <LabelParts>
+            <LabelPart Value="CGU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="CTr01">
+          <LabelParts>
+            <LabelPart Value="CTU02" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="CPa01">
+          <LabelParts>
+            <LabelPart Value="CPU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="CAc01">
+          <LabelParts />
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="CEv01">
+          <LabelParts />
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="COj01">
+          <LabelParts>
+            <LabelPart Value="COU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+        <LabelDefinition ItemTypeId="TTC01">
+          <LabelParts>
+            <LabelPart Value="TRU01" LabelPartType="PROPERTY_TYPE" />
+          </LabelParts>
+        </LabelDefinition>
+      </LabelDefinitions>
+    </LabelingScheme>
+  </LabelingSchemes>
+  <SemanticTypeLibrary>
+    <lcx:LibraryCatalogue VersionMajor="2" VersionMinor="19" VersionRelease="28" VersionBuild="61" xmlns:lcx="http://www.i2group.com/Schemas/2001-12-07/LCXSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" LocaleHex="0409">
+      <lcx:Property pGUID="guid74F2A516-2F49-4282-989F-F4A468656FF0" abstract="true">
+        <PropertyName>Abstract Flag</PropertyName>
+      </lcx:Property>
+      <lcx:Property pGUID="guidc90742f3-fa1d-42a7-b60e-9614ccf6d1e6" baseProperty="guid74F2A516-2F49-4282-989F-F4A468656FF0">
+        <PropertyName>Interactive</PropertyName>
+        <Documentation>
+          <Description />
+        </Documentation>
+      </lcx:Property>
+    </lcx:LibraryCatalogue>
+  </SemanticTypeLibrary>
+</ns2:Schema>

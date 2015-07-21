@@ -16,12 +16,12 @@ namespace Acxiom
     /// </summary>
     public class AcxiomTabFactory : ITabFactory
     {
-        private readonly IProvider<IAcxiomTabViewModel> mTabViewModelProvider;
+        private readonly IProvider<IAcxiomViewModel> mTabViewModelProvider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AcxiomTabFactory"/> class.
         /// </summary>
-        public AcxiomTabFactory(IProvider<IAcxiomTabViewModel> tabViewModelProvider)
+        public AcxiomTabFactory(IProvider<IAcxiomViewModel> tabViewModelProvider)
         {
             mTabViewModelProvider = tabViewModelProvider;
         }

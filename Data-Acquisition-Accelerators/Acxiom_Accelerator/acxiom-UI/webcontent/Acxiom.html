@@ -12,8 +12,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=9">
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <title>Acxiom Property Search</title>
-        <link href="http://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dijit/themes/dijit.css" rel="stylesheet">
-        <link href="http://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dijit/themes/claro/claro.css" rel="stylesheet">
+        <link href="http://ajax.googleapis.com/ajax/libs/dojo/1.9.2/dijit/themes/dijit.css" rel="stylesheet">
+        <link href="http://ajax.googleapis.com/ajax/libs/dojo/1.9.2/dijit/themes/claro/claro.css" rel="stylesheet">
         <style>
             html, body {
                 font-family: "Segoe UI", Arial, sans-serif;
@@ -32,7 +32,7 @@
                 min-width: 250px;
                 padding-top: 5px;
                 padding-bottom: 5px;
-            }
+            }                    
             .main_fieldset {
                 text-align: left;
             }
@@ -80,10 +80,8 @@
             .propertyListRow .input.dijitSelect,
             .propertyListRow .dijitTextBox,
             .propertyListRow .dijitTextBox .dijitButtonNode {
-                background-color : white;
+                background-color: #d8d8d8;
                 border-color: #d8d8d8;
-                min-width: 300px; 
-                padding-left: 3px;
             }
             .required {
                 color: red;
@@ -138,39 +136,40 @@
         })();
         </script>
     
-        <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.9.2/dojo/dojo.js"></script>
     
         <script>
         var mSilverlightInterface = null;
-        var domReadyForSilverlightAccess = false;
-        function isDomReady() { //called by Silverlight to check for Dom readyiness
-            return domReadyForSilverlightAccess;
+        var domReadyForSilverLightAccess = false;
+        function isDomReady() { //called by SilverLight to check for Dom readyiness
+            return domReadyForSilverLightAccess;
         }
 
         function domReady() {
 
             //Dom is Ready, start to display Acxiom UI 
-            domReadyForSilverlightAccess = true;
+            domReadyForSilverLightAccess = true;
         }
 
         function setSilverlightInterface(silverlightInterface) {
-            //called by Silverlight to setup the interfaces to be referenced later
+            //set interfaces to use in Silverlight
             mSilverlightInterface = silverlightInterface;
         }
 
         function getSilverlightInterface() {
+            //return SilverLight interfaces
             return mSilverlightInterface;
         }
 
-        function logToConsole(message) { //log message to console
+        function logToConsole(message) { //called from Silverlight to log message
             if (window.console && window.console.log) {
                 window.console.log(message);
             }
         }
 
-        require(["dojo/parser", "dijit/registry", "dojo/has",
+        require(["dojo/parser", "dijit/registry", "dojo/has","dojo/request/xhr","dojo/json", "dojo/store/Memory",
         "dijit/form/Button", "acxiom/PropertyList"],
-        function(parser, registry, has ) {
+        function(parser, registry, has, xhr, JSON, Memory) {
             
             if (has("ie") < 9) {
                 alert("The accelerator is not supported for versions of Microsoft Internet Explorer earlier than version 9.");
@@ -182,18 +181,12 @@
                 
                 var btnSubmit = registry.byId("btnSubmit");
                 var proplist = registry.byId("PropertyListWidget");
+                btnSubmit.set("disabled", true);
 
                 btnSubmit.on("click", function() {
                     submitProperties();                  
                 });
-                btnSubmit.set("disabled", true); //for now, disable submit button
-
-                function enableDisableSubmitButton(name, oldValue, newValue){
-                     btnSubmit.set("disabled", !newValue); //enable or disable button
-                }   
-                // watch for readyness of the properties to be submitted
-                proplist.watch("readynessForSubmit", enableDisableSubmitButton);   
-                          
+                 
                 function submitProperties()
                 {
 
@@ -208,8 +201,10 @@
                     });
 
                     finalProps = finalProps.slice(0, - 1); //remove the last character ';' not needed
-                    //launch DAOD interface and search using the properties                
-                    getSilverlightInterface().LaunchDataIntent(/*browse*/ "0", finalProps, /*Acxiom subset name */ "Acxiom results" );
+                    var browse = "0"; //search type
+                     
+                    //launch DAOD interfaces without a transform file path name - just use the property string
+                    getSilverlightInterface().LaunchDataIntent(browse, finalProps, /*Acxiom subset name */ "Acxiom" + " results" );
                     
                 }
             });

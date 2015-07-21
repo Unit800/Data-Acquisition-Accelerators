@@ -32,43 +32,40 @@ using System.Windows.Input;
 namespace Acxiom
 {
     /// <summary>
-    /// Interface defining a tab view model for handling <see cref="IAcxiomTabIntent"/>.
+    /// Interface defining a tab view model for handling <see cref="IAcxiomTabIntent"/>s.
     /// </summary>
     [ImplementedBy(typeof(AcxiomTabViewModel))]
-    public interface IAcxiomTabViewModel : ITabContent
+    public interface IAcxiomViewModel : ITabContent
     {
     }
 
     /// <summary>
-    /// A tab view model for handling <see cref="IAcxiomTabIntent"/>.
+    /// A tab view model for handling <see cref="IAcxiomTabIntent"/>s.
     /// </summary>
-    public class AcxiomTabViewModel : TabContentViewModelBase<IAcxiomTabView>, IAcxiomTabViewModel
+    public class AcxiomTabViewModel : TabContentViewModelBase<IAcxiomTabView>, IAcxiomViewModel
     {
 
         /// <summary>
-        /// This object provides the interface that the JavaScript portion will call back into Silverlight to launch Data Intent.
+        /// This object provides the interface that the JavaScript portion will call back into Silverlight to launch Data Intent
         /// </summary>
         [SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class JavaScriptHandler
         {
-            private readonly IAcxiomConstants mAcxiomConstants;
-            private readonly IDataAccessIntentHandler mDataAccessIntentHandler;
+            private readonly AcxiomTabViewModel mViewModel;
+            private DataAccessIntentHandler mIntentHandler = null;
             private readonly IJavaScriptHostedCallRunner mJavaScriptHostedCallRunner;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="JavaScriptHandler"/> class.
             /// </summary>
-            public JavaScriptHandler(IAcxiomConstants acxiomConstants,
-                IDataAccessIntentHandler dataAccessIntentHandler,
-                IJavaScriptHostedCallRunner javaScriptHostedCallRunner)
+            public JavaScriptHandler(AcxiomTabViewModel viewModel)
             {
-                mAcxiomConstants = acxiomConstants;
-                mDataAccessIntentHandler = dataAccessIntentHandler;
-                mJavaScriptHostedCallRunner = javaScriptHostedCallRunner;
+                mViewModel = viewModel;
+                mJavaScriptHostedCallRunner = mViewModel.mContainer.Resolve<IJavaScriptHostedCallRunner>();
             }
 
             /// <summary>
-            /// Launch a Data Intent tab to show the external data.
+            /// Launch a Data Intent tab to show the external data
             /// </summary>
             [ScriptableMember]
             public void LaunchDataIntent(string searchType, string searchTermValues, string subsetName)
@@ -79,8 +76,24 @@ namespace Acxiom
 
             private void ExecuteDataIntentAsHostedJavascriptCall(string searchType, string searchTermValues, string subsetName)
             {
+                if (mIntentHandler == null)
+                {
+                    var intentManager = mViewModel.mContainer.Resolve<IIntentManager>();
+                    var exploreConfigBuilder = mViewModel.mContainer.Resolve<IExploreConfigBuilder>();
+                    var explorationIntentFactory = mViewModel.mContainer.Resolve<IExplorationIntentFactory>();
+                    var notificationService = mViewModel.mContainer.Resolve<INotificationService>();
+                    var dataSourcesAndSchema = mViewModel.mContainer.Resolve<IDataSourcesAndSchema>();
+                    var networkSearchConfigBuilder = mViewModel.mContainer.Resolve<INetworkSearchConfigBuilder>();
+                    var acxiomConstants = mViewModel.mContainer.Resolve<IAcxiomConstants>();
+
+                    mIntentHandler = new DataAccessIntentHandler(intentManager, networkSearchConfigBuilder, dataSourcesAndSchema, 
+                                                                 exploreConfigBuilder, notificationService,
+                                                                 explorationIntentFactory, acxiomConstants);
+
+                }
                 //execute Daod Intent, search and show results in new tab
-                mDataAccessIntentHandler.ProcessSearch(searchType, searchTermValues, subsetName);
+                mIntentHandler.ProcessSearch(searchType, searchTermValues, subsetName);
+
             }
 
             /// <summary>
@@ -89,49 +102,58 @@ namespace Acxiom
             [ScriptableMember]
             public string GetExternalContextRoot()
             {
-                return mAcxiomConstants.AcxiomDaodExternalContextRoot;
+                return mViewModel.mAcxiomConstants.AcxiomDaodExternalContextRoot;
             }
 
             /// <summary>
-            /// Get source path where the external xml files are located.
+            /// Get source path where the external xml files are located -
             /// </summary>
             [ScriptableMember]
             public string GetXmlSourcePath()
             {
-                return mAcxiomConstants.AcxiomDaodXmlSourcePath;
+                return mViewModel.mAcxiomConstants.AcxiomDaodXmlSourcePath;
             }
 
             /// <summary>
-            /// Get transform XSLT file Path.
+            /// Get transform XSLT file Path
             /// </summary>
             [ScriptableMember]
             public string GetTransformSourcePath()
             {
-                return mAcxiomConstants.AcxiomDaodTransformSourcePath;
+                return mViewModel.mAcxiomConstants.AcxiomDaodTransformSourcePath;
             }
 
         }
 
+        private readonly IIntentManager mIntentManager;
+        private readonly IDependencyInjectionContainer mContainer;
+
+        private readonly IAcxiomConstants mAcxiomConstants;
+        private readonly string mBaseURL;
         private readonly IDispatcherTimer mDispatcherTimer;
-        private readonly Queue<Action> mPendingActions = new Queue<Action>();
+        private Queue<Action> mPendingActions = new Queue<Action>();
         private readonly JavaScriptHandler mJavaScriptHandler;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AcxiomTabViewModel"/> class.
         /// </summary>
         public AcxiomTabViewModel(IAcxiomTabView view,
-            IJavaScriptHostedCallRunner javaScriptHostedCallRunner,
+            IIntentManager intentManager,
             IDispatcherTimer dispatcherTimer,
-            IDataAccessIntentHandler dataAccessIntentHandler,
+            IDependencyInjectionContainer container,
             IAcxiomConstants acxiomConstants)
             : base(isCloseable: true)
         {
+            mIntentManager = intentManager;
+            mContainer = container;
             mDispatcherTimer = dispatcherTimer;
+            mAcxiomConstants = acxiomConstants;
             Header = AcxiomStringResources.TabHeader; //Tab Header text
             HeaderTooltip = AcxiomStringResources.TabHeaderTooltip; //Tab header tooltip
 
-            PageLocation = acxiomConstants.ExternalSubsetGenerationUri.ToString();
-            mJavaScriptHandler = new JavaScriptHandler(acxiomConstants, dataAccessIntentHandler, javaScriptHostedCallRunner);
+            mBaseURL = mAcxiomConstants.ExternalSubsetGenerationUri.ToString();
+            PageLocation = mBaseURL;
+            mJavaScriptHandler = new JavaScriptHandler(this);
 
             SetAsViewModelForView(view);
             //All is ok, start to render html UI
@@ -183,11 +205,8 @@ namespace Acxiom
         /// <inheritdoc />
         public void HandleIntent(IIntent intent, OpenTabOptions opts)
         {
-            // Handle the intent.
-            // Note: This example does not use any Data properties, but in general
-            // an intent can have any content, and all of that content is
-            // available here.
-            var tabIntent = (IAcxiomTabIntent)intent;
+            PageLocation = mBaseURL;
+            SetAsViewModelForView(View);
         }
 
         private string mPageLocation;

@@ -5,10 +5,10 @@
  * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
  *******************************************************************************/
 /*globals define: true */
-define(["dojo/_base/declare", "dijit/_WidgetBase",
+define(["dojo/_base/declare", "dojo/_base/lang", "dijit/_WidgetBase",
         "dijit/_TemplatedMixin", "dijit/_WidgetsInTemplateMixin",
         "dojo/text!./templates/PropertyListRow.html"],
-    function (declare, _WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin,
+    function (declare, dojo, _WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin,
             template) {
         return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
             templateString: template,
@@ -18,7 +18,7 @@ define(["dojo/_base/declare", "dijit/_WidgetBase",
             
             postCreate: function() {
                 this.inherited(arguments);
- 
+                
                 this.txtValue.watch("displayedValue", this._displayedValueChanged.bind(this));
             },
              

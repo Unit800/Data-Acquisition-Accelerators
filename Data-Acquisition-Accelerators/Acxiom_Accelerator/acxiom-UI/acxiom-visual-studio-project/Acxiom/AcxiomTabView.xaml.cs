@@ -25,6 +25,10 @@ namespace Acxiom
         /// Gets a value indicating whether the HTML dom is completed.
         /// </summary>
         bool IsDomReady { get; }
+        /// <summary>
+        /// write message to console log.
+        /// </summary>
+        void LogToConsole(string message);
 
     }
 
@@ -44,6 +48,11 @@ namespace Acxiom
         public void SetSilverlightInterface(object silverlightInterface)
         {
             HtmlHost.InvokeInIFrame("setSilverlightInterface", silverlightInterface);
+        }
+        /// <inheritdoc />
+        public void LogToConsole(string message)
+        {
+            HtmlHost.InvokeInIFrame("logToConsole", message);//write to browser console
         }
         /// <inheritdoc />
         public bool IsDomReady

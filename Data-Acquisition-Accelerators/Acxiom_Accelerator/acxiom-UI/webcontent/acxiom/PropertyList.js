@@ -13,10 +13,10 @@ define(["dojo/_base/declare", "dijit/_WidgetBase", "dijit/_TemplatedMixin", "dij
         return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
             templateString: template,
             
-            _showHidePropTitle: null,
-            _searchTermStore: null,
             childRows: null,
-            readynessForSubmit: false,
+            searchTermStore: null,
+            showHidePropTitle: null,
+            submitBtn: null,
             dppaSearchFilterProperty: null,
             glbaSearchFilterProperty: null,
             
@@ -26,30 +26,38 @@ define(["dojo/_base/declare", "dijit/_WidgetBase", "dijit/_TemplatedMixin", "dij
             
             postCreate: function() {
                 this.inherited(arguments);
-               
-                this._showHidePropTitle = new Toggler({
+                this.submitBtn = registry.byId("btnSubmit");
+
+
+                this.showHidePropTitle = new Toggler({
                     node: this.searchTermPropTitle
                 }); 
-                this.own(this._showHidePropTitle);
+
+                var propStore = this.lstPropertyType.get('store');
                 
+                // Remove an object by ID
+                //propStore.remove("Last Name");
+                this.on("dataLoaded", this._setSearchOptions.bind(this));
                 this._loadData(); //set the Search term properties
 
-                var evaluateReadyness =  this._evaluateReadynessForSubmit.bind(this);
+                ///////////////////// 
+                var evaluateLoginReadyness =  this._evaluateReadynessForSubmit.bind(this);
                 
                 //dppa - ensure a valid entry
-                this.dppaPropertyType.watch("state", evaluateReadyness);
-                this.dppaPropertyType.watch("displayedValue", evaluateReadyness);
+                this.dppaPropertyType.watch("state", evaluateLoginReadyness);
+                this.dppaPropertyType.watch("displayedValue", evaluateLoginReadyness);
                 
                 //glba - ensure a valid entry
-                this.glbaPropertyType.watch("state", evaluateReadyness);
-                this.glbaPropertyType.watch("displayedValue", evaluateReadyness);
+                this.glbaPropertyType.watch("state", evaluateLoginReadyness);
+                this.glbaPropertyType.watch("displayedValue", evaluateLoginReadyness);
 
                 this.lstPropertyType.set("value", "");
 
                 var reEvaluate = this._reEvaluateEnabledness.bind(this);                
                 this.lstPropertyType.watch("state", reEvaluate);
                 this.lstPropertyType.watch("displayedValue", reEvaluate);
-                                
+                
+                
                 this._reEvaluateEnabledness();
             },
             
@@ -67,7 +75,7 @@ define(["dojo/_base/declare", "dijit/_WidgetBase", "dijit/_TemplatedMixin", "dij
                     // Process Acxiom query data
                     var properties = _XML2json(data.documentElement)                        
                     self._setSearchFilters(properties);
-                    self._setSearchTermStore(properties);
+                    self._setSearchTermStore(properties); //triggers an event after store is set
 
                     }, function(err){
                     // Handle the error condition
@@ -90,9 +98,9 @@ define(["dojo/_base/declare", "dijit/_WidgetBase", "dijit/_TemplatedMixin", "dij
 
             _setSearchOptions: function() {
                     
-                //set items to property store
+                //all items to UI ist
                 var propStore = this.lstPropertyType.get('store');
-                this._searchTermStore.query({QueryType: /.*/}).forEach(function(propertyQuery){
+                this.searchTermStore.query({QueryType: /.*/}).forEach(function(propertyQuery){
                     // called for each match
                     propStore.put({ id: propertyQuery.QueryType, label: "enter in....", name: propertyQuery.QueryType,  value: propertyQuery.PropertyList  });
 
@@ -127,28 +135,59 @@ define(["dojo/_base/declare", "dijit/_WidgetBase", "dijit/_TemplatedMixin", "dij
 
             },
 
-            _setSearchTermStore: function(searchNode) {          
-                this._searchTermStore = new Memory({idProperty: "QueryType", data: searchNode.SearchTerm});
-                this._setSearchOptions();// load the property store
+            _setSearchTermStore: function(searchNode) {
+           
+                //combine the above function
+                this.searchTermStore = null;
+                this.searchTermStore = new Memory({idProperty: "QueryType", data: searchNode.SearchTerm});
+
+                this.onDataLoaded(this); //trigger event( _setSearchOptions ) to cause property list to get loaded
+
             },
                         
-            displayQueryRows: function() {
+            _propertyTypeKeypress: function(e) {
+                switch (e.charOrCode) {
+                    case keys.ENTER:
+                        //this.txtValue.focus();
+                        break;
+                }
+            },
 
-                if ( this.childRows.length != 0) { //clear rows if currently being displayed
+            _searchTermKeypress: function(e) {
+                switch (e.charOrCode) {
+                    case keys.ENTER:
+                        break;
+                }
+            },
+            
+            _valueKeypress: function(e) {
+                switch (e.charOrCode) {
+                    case keys.ENTER:
+                        this.insertRow();
+                        break;
+                }
+            },
+
+            displayQueryRows: function() {
+                if (this.btnInsert.get("disabled")) {
+                    return;
+                }
+                if ( this.childRowslength != 0) { //clear rows if currently being displayed
                     this.clearRows();
                 }
                 var propertyTypeName = this.lstPropertyType.get("value");
  
                 // Show the node
-                this._showHidePropTitle.show();
+                this.showHidePropTitle.show();
 
                 this.qryViewSelected.textContent = propertyTypeName;
 
-                var qryresult = this._searchTermStore.query({QueryType:propertyTypeName })[0]  //Returns the array query object
+                var qryresult = this.searchTermStore.query({QueryType:propertyTypeName })[0]  //Returns the array query object
                 var propList = qryresult.PropertyList.split(',');
                 var self = this;
                 arrayUtil.forEach(propList, function(property, i){
                     self.insertRow(property);
+                    //console.debug(property, "at index", i);
                 });
 
                 this.lstPropertyType.set("value", "");
@@ -157,10 +196,14 @@ define(["dojo/_base/declare", "dijit/_WidgetBase", "dijit/_TemplatedMixin", "dij
             },
                         
             insertRow: function(propertyName) {
+                if (this.btnInsert.get("disabled")) {
+                    return;
+                }
 
                 var newRow = new PropertyListRow({
+                    //propertyTypeName: this.lstPropertyType.get("value"),
                     propertyTypeName: propertyName,
-                    propertyValue: ""
+                    propertyValue: "" //this.txtValue.get("value")
                 });
                 this.childRows.push(newRow);
                 
@@ -182,9 +225,9 @@ define(["dojo/_base/declare", "dijit/_WidgetBase", "dijit/_TemplatedMixin", "dij
                 
                 this.childRows = [];
                 this.qryViewSelected.textContent = "";
-                this.set("readynessForSubmit",false);
+                this.submitBtn.set("disabled", true);
                 // Hide the node
-                this._showHidePropTitle.hide();
+                this.showHidePropTitle.hide();
 
              },
 
@@ -212,7 +255,12 @@ define(["dojo/_base/declare", "dijit/_WidgetBase", "dijit/_TemplatedMixin", "dij
 
                             });
                         }                
-                this.set("readynessForSubmit",isEnabled);
+                this.submitBtn.set("disabled", !isEnabled);
+            },
+
+
+            // Placeholder for dataLoadedevent.
+            onDataLoaded: function(instance) {
             },
                        
             _removeRequested: function(row) {
@@ -221,7 +269,18 @@ define(["dojo/_base/declare", "dijit/_WidgetBase", "dijit/_TemplatedMixin", "dij
                 this.childRows.splice(index, 1);
                 
                 row.destroyRecursive();
-            }            
+            },
+            
+            _updateTotalCharCount: function() {
+                var count = 0;
+                return;
+                // for now, commented out this node
+                this.childRows.forEach(function(item) {
+                    count += item.get("propertyValue").length;
+                });
+                
+                this.txtTotalChars.textContent = count;
+            }
         });
     });
 

@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
-Licensed Materials - Property of IBM
-(C) Copyright IBM Corp. 2015 All Rights Reserved
-US Government Users Restricted Rights - Use, duplication or
-disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
--->
 <AcxionSearch>
-  <SearchTerm>
-	<QueryType>First, Last, City, State, Zip</QueryType>
+	<SearchTerm>
+		<QueryType>First, Last, City, State, Zip</QueryType>
     <PropertyList>First Name,Last Name,City,State,ZipCode</PropertyList>
-  </SearchTerm>
+	</SearchTerm>
   <SearchTerm>
     <QueryType>First, Last, Zip</QueryType>
     <PropertyList>First Name, Last Name, Zip</PropertyList>

@@ -166,11 +166,10 @@ Procedure
     7.  <span class="ph cmd">Modify the settings in the new tab. Clear the <span class="ph uicontrol">Run applications directly from the workspace</span> check box, and click <span class="ph menucascade">**Publishing** \> **Never publish automatically**</span>.</span>
     8.  <span class="ph cmd">Press Ctrl+S to save the settings.</span>
 
-20. <span class="ph cmd">Refresh the `shared` and `acxiom-example` projects in the Eclipse user interface to ensure that their current state is displayed.</span>
+20. <span class="ph cmd">Refresh the `shared` project in the Eclipse user interface to ensure that the current state is displayed.</span>
 21. <span class="ph cmd">In your Eclipse workspace, open the <span class="ph filepath">WebSphere Application Server V8.5 Liberty Profile/servers/acxiomread/apps</span> folder, and delete the `acxiom-example.war` application, which is an incomplete application.</span> Next, you will add the complete accelerator application to the workspace.
 22. <span class="ph cmd">Repeat the instructions that you followed when you added the `shared` directory to your Eclipse workspace. This time, add the `IAP-Deployment-Toolkit\SDK\sdk-projects\acxiom-example` directory to Eclipse.</span>
-23. <span class="ph cmd">Using your Acxiom user credentials, download from Acxiom the `.wsdl` and `.xsd` files for the findpeople and comprehensivereport services, and save them to disk.</span> The Acxiom project in Eclipse contains a generated SOAP client that works with version 2.7 of these files. Download each file by opening a web browser and entering the appropriate URL from the following list to load the file. Then, enter your Axciom user credentials. When each file has loaded, select **Save As** in your web browser and save the file to disk. Rename each file as you save it, using the name specified in the following list:
-
+23. <span class="ph cmd">Using your Acxiom user credentials, download from Acxiom the `.wsdl` and `.xsd` files for the findpeople and comprehensivereport services, and save them to disk.</span> The Acxiom project in Eclipse contains a generated SOAP client that works with version 2.7 of these files. Download each file by opening a web browser and entering the appropriate URL from the following list to load the file. Then, enter your Axciom user credentials. When each file has loaded, select **Save As** in your web browser and save the file to disk. Rename each file as you save it, using the name specified in the following list.
     https://cert-services.acxiom.com/idod-findpeople-v2.7?wsdl  
     Save as `v201110-FindPeopleService.wsdl`
 
@@ -211,17 +210,7 @@ Procedure
     Save as `v201110-us-idod-findpeople.xsd`
 
 24. <span class="ph cmd">Copy all the downloaded `.wsdl` and `.xsd` files to the Acxiom Eclipse project, placing them in the directory <span class="ph filepath">acxiom-example/Java Resources/src/resources/com/ibm/i2/connectors/acxiom/resources/wsdl</span>. Then, refresh the `acxiom-example` project.</span>
-25. <span class="ph cmd">Edit each of the `.wsdl` and `.xsd` files in the Eclipse project directory so that the schemaLocation attribute references your local copy of the file, rather than the Acxiom URL for the file.</span> 
-
-For example, in the file `v201110-us-idod-findpeople.xsd`, change the schemaLocation attribute from: 
-
-schemaLocation="https://cert-services.acxiom.com/idod-findpeople-v2.7?xsd=v201110-us-idod-findpeople.xsd" 
-
-to 
-
-schemaLocation="v201110-us-idod-findpeople.xsd". 
-
-Edit all of the `.wsdl` and `.xsd` files in the same way.
+25. <span class="ph cmd">Edit each of the `.wsdl` and `.xsd` files in the Eclipse project directory so that the schemaLocation attribute references your local copy of the file, rather than the Acxiom URL for the file.</span> For example, in the file `v201110-us-idod-findpeople.xsd`, change the schemaLocation attribute from schemaLocation="https://cert-services.acxiom.com/idod-findpeople-v2.7?xsd=v201110-us-idod-findpeople.xsd" to schemaLocation="v201110-us-idod-findpeople.xsd". Edit all of the `.wsdl` and `.xsd` files in the same way.
 26. <span class="ph cmd">Generate a default keystore on the `acxiomread` server.</span>
     1.  <span class="ph cmd">In the Eclipse Design view, open the `server.xml` file for the `acxiomread` server.</span>
     2.  <span class="ph cmd">Click **Add**, select **Keystore** from the list of elements, and click **OK**.</span>
